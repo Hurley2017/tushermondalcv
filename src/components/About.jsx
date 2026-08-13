@@ -16,9 +16,11 @@ export default function About() {
             <p>{profile.resumeNote}</p>
             <p>
               At HSBC I work with enterprise data — Excel, Power BI, TM1 and Alteryx — turning raw
-              numbers into decisions. Away from the desk I keep the developer spark alive: grinding
-              through 200+ problems on LeetCode and HackerRank, and building things like an AI
-              story-writer, a physics-based engine sound synth, or a tiny Rust music player.
+              numbers into decisions. Away from the desk I keep the developer spark alive: running
+              local AI models entirely on-device (LLMs via LM Studio, Stable Diffusion for images,
+              Orpheus TTS for voices), grinding through 200+ problems on LeetCode and HackerRank,
+              and building things like an AI story-writer, a physics-based engine sound synth, or a
+              tiny Rust music player.
             </p>
           </Reveal>
           <Reveal className="about__meta" delay={160}>

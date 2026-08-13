@@ -7,7 +7,7 @@ export default function Skills() {
       <div className="container">
         <Reveal>
           <h2 className="section__title">
-            <span className="section__index">04.</span> Skills
+            <span className="section__index">07.</span> Skills
           </h2>
         </Reveal>
         <div className="skills-grid">

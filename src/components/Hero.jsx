@@ -8,7 +8,7 @@ export default function Hero() {
         <div className="hero__content">
           <span className="hero__eyebrow">Hi, my name is</span>
           <h1 className="hero__name">
-            {profile.firstName} <span className="gradient-text">{profile.lastName}</span>
+            {profile.firstName} <em>{profile.lastName}</em>
           </h1>
           <p className="hero__role">{profile.role}</p>
           <p className="hero__tagline">{profile.tagline}</p>
@@ -51,9 +51,9 @@ export default function Hero() {
             <div className="hero__avatar-ring">
               <img className="hero__avatar" src={profile.avatar} alt={`${profile.name} portrait`} />
             </div>
-            <span className="hero__status" title="Data Analyst at HSBC">
+            <span className="hero__status" title="Manager — Management Reporting — CIB at HSBC">
               <span className="hero__status-dot" />
-              Data Analyst · HSBC
+              Manager · HSBC
             </span>
           </div>
         </div>

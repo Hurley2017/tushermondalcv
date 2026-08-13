@@ -7,7 +7,7 @@ export default function Education() {
       <div className="container">
         <Reveal>
           <h2 className="section__title">
-            <span className="section__index">08.</span> Education
+            <span className="section__index">04.</span> Education
           </h2>
         </Reveal>
         <div className="timeline">

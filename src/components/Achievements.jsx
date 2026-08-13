@@ -7,14 +7,14 @@ export default function Achievements() {
       <div className="container">
         <Reveal>
           <h2 className="section__title">
-            <span className="section__index">07.</span> Achievements
+            <span className="section__index">05.</span> Achievements
           </h2>
         </Reveal>
         <div className="achievements-grid">
           {achievements.map((item, i) => (
             <Reveal key={item.title} className="achievement" delay={(i % 3) * 70}>
               <article className="card achievement__card">
-                <span className="achievement__badge">✦</span>
+                <span className="achievement__badge">{String(i + 1).padStart(2, '0')}</span>
                 <h3 className="achievement__title">{item.title}</h3>
                 <p className="achievement__detail">{item.detail}</p>
               </article>

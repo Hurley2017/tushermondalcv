@@ -15,7 +15,7 @@ export const profile = {
   phone: '+91 91230 90573',
   avatar: '/avatar.webp',
   resumeNote:
-    "I'm a Manager in Management Reporting (CIB) at HSBC, working with Excel, Power BI, TM1 and Alteryx for enterprise data analytics — and I love building applications that solve real-life problems. With an MCA from Jadavpur University and a B.Sc (Hons) in Computer Science, I sit at the intersection of analytics and engineering: crafting data-driven insights, automating workflows, and shipping full-stack apps in Python, JavaScript and Rust.",
+    "I'm a Manager in Management Reporting (CIB) at HSBC, working with Excel, Power BI, TM1 and Alteryx for enterprise data analytics — and I love building applications that solve real-life problems. A big part of my tinkering is local, on-device AI: I run LLMs through LM Studio, generate images with Stable Diffusion (SDXL / RealVisXL) and synthesize voices with Orpheus TTS — everything fully local, no cloud. With an MCA from Jadavpur University and a B.Sc (Hons) in Computer Science, I sit at the intersection of analytics and engineering: crafting data-driven insights, automating workflows, and shipping full-stack apps in Python, JavaScript and Rust.",
   cvPdf: '/Tusher_Mondal_CV.pdf',
   cvTex: '/Tusher_Mondal_CV.tex',
   socials: [
@@ -219,6 +219,17 @@ export const education = [
 
 export const skillGroups = [
   {
+    title: 'Local AI & Models',
+    skills: [
+      'LM Studio',
+      'Local LLMs',
+      'Stable Diffusion (SDXL)',
+      'RealVisXL',
+      'Orpheus TTS',
+      'Embedded ML',
+    ],
+  },
+  {
     title: 'Data & Analytics',
     skills: ['Excel', 'VBA', 'Power BI', 'Power Query', 'TM1', 'Alteryx', 'Pandas', 'NumPy', 'SQL'],
   },
@@ -280,10 +291,6 @@ export const hobbies = [
 ]
 
 export const achievements = [
-  {
-    title: 'HSBC Analyst → Manager',
-    detail: 'Converted from Analyst Intern to a full-time Manager in Management Reporting (CIB) — 2 years 8 months with the bank and counting.',
-  },
   {
     title: 'HackerRank Certifications',
     detail: 'Certified in Python (Basic), SQL (Basic) and Java (Basic).',

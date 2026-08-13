@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react'
 import { navLinks, profile } from '../data/profile.js'
 import { Icon } from './icons.jsx'
-import { isSoundEnabled, setSoundEnabled, playClick } from '../lib/sounds.js'
 
 export default function Navbar({ route = 'home' }) {
   const [scrolled, setScrolled] = useState(false)
   const [active, setActive] = useState('')
   const [open, setOpen] = useState(false)
-  const [soundOn, setSoundOn] = useState(isSoundEnabled)
 
   useEffect(() => {
     if (route !== 'home') {
@@ -30,18 +28,8 @@ export default function Navbar({ route = 'home' }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [route])
 
-  // Swap the "TM" monogram for the profile picture once we've scrolled
-  // past the hero (i.e. when the About section or later is in view).
+  // Swap the monogram for the profile picture once we've scrolled past the hero.
   const showAvatar = active !== '' || route !== 'home'
-
-  const toggleSound = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-    const next = !soundOn
-    setSoundOn(next)
-    setSoundEnabled(next)
-    if (next) playClick()
-  }
 
   const goTo = (e, link) => {
     e.preventDefault()
@@ -79,7 +67,7 @@ export default function Navbar({ route = 'home' }) {
           ) : (
             <span className="nav__brand-mark">TM</span>
           )}
-          <span className="nav__brand-text">{profile.firstName}</span>
+          <span className="nav__brand-text">{profile.name}</span>
         </a>
 
         <nav className={`nav__links ${open ? 'is-open' : ''}`}>
@@ -97,15 +85,6 @@ export default function Navbar({ route = 'home' }) {
             <Icon name="download" size={14} /> Get CV
           </a>
         </nav>
-
-        <button
-          className="nav__sound"
-          onClick={toggleSound}
-          aria-label={soundOn ? 'Mute sound effects' : 'Enable sound effects'}
-          title={soundOn ? 'Sound on — click to mute' : 'Sound off — click to enable'}
-        >
-          <Icon name={soundOn ? 'speaker' : 'muted'} size={17} />
-        </button>
 
         <button
           className={`nav__toggle ${open ? 'is-open' : ''}`}

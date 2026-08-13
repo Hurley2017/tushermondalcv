@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="container footer__inner">
-        <p className="footer__note">Designed &amp; built with care by {profile.firstName}.</p>
+        <p className="footer__note">Designed &amp; built with care by {profile.name}.</p>
         <a
           className="footer__source"
           href="https://github.com/Hurley2017"
