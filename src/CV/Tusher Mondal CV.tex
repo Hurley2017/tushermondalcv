@@ -1,0 +1,265 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+% \input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.8in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+\setlength{\footskip}{4.08003pt}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+% \pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\classesList}[4]{
+    \item\small{
+        {#1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
+%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
+% \end{tabular*}
+
+\begin{center}
+    {\Huge \scshape Tusher Mondal} \\ \vspace{1pt}
+    Bengaluru - 560001, Karnataka, India \\ \vspace{1pt}
+    \small \raisebox{-0.1\height}\faPhone\ +919123090573 ~ \href{mailto:tusher9073mondal@gmail.com}{\raisebox{-0.2\height}\faEnvelope\  \underline{tusher9073mondal@gmail.com}} ~ 
+    \href{https://www.linkedin.com/in/tusher-mondal/}{\raisebox{-0.2\height}\faLinkedin\ \underline{linkedin.com/in/tusher-mondal/}}  ~
+    \href{https://github.com/Hurley2017}{\raisebox{-0.2\height}\faGithub\ \underline{github.com/Hurley2017}}
+    \vspace{-1pt}
+\end{center}
+Adept at learning new technologies, I bring a diverse skillset in Data Analytics, Web Development, and Software Development to build scalable solutions.
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Jadavpur University}{Sep 2022 -- Jul 2024}
+      {Master of Computer Application : 8.52 CGPA  [Lin. Avg.]}{Jadavpur, West Bengal}
+    \resumeSubheading
+      {West Bengal State University ( Acharya Prafulla Chandra College )}{Jul. 2019 -- Aug 2022}
+      {Bachelor of Science in Computer Science Honors : 9.4 CGPA}{Barasat, West Bengal}
+    
+  \resumeSubHeadingListEnd
+\vspace{-13pt}
+%-----------PROGRAMMING SKILLS-----------
+\section{Technical Skills}
+     \textbf{Languages}{: Python, C, C++, Java, HTML/CSS, JavaScript, SQL, Bash, Rust} \\
+     \textbf{Dev Tools/Technologies}{: VS Code, Postman, GitHub, Flask,  React, Microsoft Excel, Power BI, Alteryx, TM1, Nmap, Nessus, Oval} \\
+     \textbf{Databases}{: MongoDB, Redis, Data Space, MySQL, Microsoft Access} \\
+     \textbf{Relevant Courses}{: Computer Networks, Machine Learning, Advanced Programming in Python and Java. etc.}
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {HSBC}{Present}
+      {Data Analyst}{Bengaluru}
+      \resumeItemListStart
+        \resumeItem{Work on enterprise data analytics, turning raw numbers into actionable insights for one of the world's largest banking groups.}
+        \resumeItem{Work across the analytics stack with Microsoft Excel, Power BI, TM1 and Alteryx.}
+        \resumeItem{Automate repetitive tasks by building custom internal tools, streamlining workflows and maximizing time efficiency and productivity.}
+        \resumeItem{\textbf{Technologies}  :  Excel, Power BI, TM1, Alteryx, Python, SQL}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {HSBC}{Jan 2024 -- Jul 2024}
+      {Analyst Intern}{Chennai}
+      \resumeItemListStart
+        \resumeItem{Built a system that automates the generation of email reports that monitor data quality across specified businesses and regions. The reports are comprehensive and customized, delivered to a designated list of recipients.}
+        \resumeItem{Automated repetitive tasks by building custom internal tools which results in streamlined workflows and maximized time efficiency and productivity.}
+        \resumeItem{Uncovered Business Trends Through Data Exploration and Visualization.}
+        \resumeItem{\textbf{Technologies}  :  Python/ (pandas, openpyxl, xlwings, pywin32 etc.), Power Query, Microsoft Excel, VS Code, GitHub}
+      \resumeItemListEnd
+    
+    \resumeSubheading
+      {Celebal Technologies}{Jun 2023 -- Aug 2023}
+      {Data Science Intern}{Remote}
+      \resumeItemListStart
+        \resumeItem{Created a forecasting model that utilizes user traits to track behavior and predict future bandwidth consumption.}
+        \resumeItem{Developed an interactive full stack panel that visualizes usage report on various metrics.}
+        \resumeItem{\textbf{Technologies}  :  Python/ (pandas, scikit-learn, etc.), VS Code, Data Space, No-SQL}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {CodeClause}{May 2023 -- Jun 2023}
+      {Python Developer Intern}{Remote}
+      \resumeItemListStart
+        \resumeItem{Created a Web-Based URL Shorten-er which enables share large URLs in short form using Data Base mapping.}
+        \resumeItem{Engineered a Voice Assistant CLI that leverages Google's Gemini(previously Bard) model to mimic a conversation.}
+        \resumeItem{\textbf{Technologies}  :  Python/ (Flask, speechrecognition, Bard-API, pyttsx3), VS Code, GitHub, MongoDB, }
+    \resumeItemListEnd
+
+    
+    
+  \resumeSubHeadingListEnd
+\vspace{-13pt}
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \vspace{-5pt}
+    \resumeSubHeadingListStart
+
+    \resumeProjectHeading
+          {\textbf{Writer} $|$ \emph{Python, LLM, SDXL, TTS}}{}
+          \resumeItemListStart
+            \resumeItem{A local AI agent that writes complete stories -- a 3-stage pipeline that drafts the story with a local LLM, generates photorealistic book covers with RealVisXL (SDXL), and narrates it as a dual-voice audiobook with Orpheus TTS.}
+            \resumeItem{Strict-JSON outline generation with schema-aware retries, embedded image backend with CPU offload, and an A5 PDF builder.}
+          \resumeItemListEnd
+          \vspace{-5pt}
+
+        \resumeProjectHeading
+          {\textbf{Piston-And-Sound} $|$ \emph{JavaScript, Web Audio API}}{}
+          \resumeItemListStart
+            \resumeItem{A web interface that mimics the physics-based sound of different engine types -- procedural audio synthesized in-browser from engine physics: cylinder count, RPM, firing order and attack shapes.}
+          \resumeItemListEnd
+          \vspace{-5pt}
+
+        \resumeProjectHeading
+          {\textbf{Rusty Radio} $|$ \emph{Rust}}{}
+          \resumeItemListStart
+            \resumeItem{An intentionally simple music player that consumes bare-minimum system resources. Old-school, limited-feature tech that just works in the background.}
+          \resumeItemListEnd
+          \vspace{-5pt}
+
+        \resumeProjectHeading
+          {\textbf{HandMouse} $|$ \emph{Python, OpenCV}}{}
+          \resumeItemListStart
+            \resumeItem{Turns your hand gestures into mouse actions using just a webcam -- computer vision meets everyday utility.}
+          \resumeItemListEnd
+          \vspace{-5pt}
+
+    \resumeProjectHeading
+          {\textbf{Socket Transfer} $|$ \emph{Python, socket programming, TCP/IP}}{}
+          \resumeItemListStart
+            \resumeItem{Facilitated a server-client system that can transfer data/files within an inter-network environment while utilizing the full capacity of the NIC.}
+            \resumeItem{Executed automatic chunk signing technique that helps in faster rearranging resulting efficient transfer.}
+          \resumeItemListEnd
+          \vspace{-5pt}
+
+        \resumeProjectHeading
+          {\textbf{Railway Reservation System} $|$ \emph{Python, Flask, HTML/CSS, Bootstrap, JavaScript, MongoDB}}{}
+          \resumeItemListStart
+            \resumeItem{Formulated a Train Booking System with multi-level access design allowing users to book seats of their choice in a upcoming reservation schedule, similarly admins can manage upcoming reservations, train activity, and transactions.}
+          \resumeItemListEnd 
+          \vspace{-5pt}
+
+    \resumeSubHeadingListEnd
+\vspace{-13pt}
+
+%-----------PROJECTS-----------
+\section{Co-curricular Activities}
+\vspace{-0pt}
+\textbf{Final year thesis}{: Customizing \textbf{MulVAL} for Attack Graph Generation. Network Simulated Digital Forensic.}
+\\
+\textbf{Certifications}{: Achieved HackerRank certification on Python, Java, and SQL}
+\\
+\textbf{Competitive Programming}{: Solved more than 200 problems listed on \textbf{Leetcode, HackerRank} etc.}
+\\
+\vspace{-13pt}
+
+\end{document}

@@ -14,18 +14,18 @@ export default function Hero() {
           <p className="hero__tagline">{profile.tagline}</p>
 
           <div className="hero__actions">
-            <a className="btn btn--primary" href={`mailto:${profile.email}`}>
-              Get in touch
+            <a className="btn btn--primary" href={profile.cvPdf} download>
+              <Icon name="download" size={17} /> Get CV
             </a>
             <a
               className="btn btn--ghost"
-              href="#projects"
+              href="#about"
               onClick={(e) => {
                 e.preventDefault()
-                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
+                document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
               }}
             >
-              View my work
+              Explore
             </a>
           </div>
 
@@ -48,7 +48,9 @@ export default function Hero() {
 
         <div className="hero__media">
           <div className="hero__avatar-wrap">
-            <img className="hero__avatar" src={profile.avatar} alt={`${profile.name} portrait`} />
+            <div className="hero__avatar-ring">
+              <img className="hero__avatar" src={profile.avatar} alt={`${profile.name} portrait`} />
+            </div>
             <span className="hero__status" title="Data Analyst at HSBC">
               <span className="hero__status-dot" />
               Data Analyst · HSBC
