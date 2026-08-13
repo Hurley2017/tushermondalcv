@@ -54,12 +54,13 @@ function hashColor(str) {
 // svg and png. Falls back to the colored initial badge if none loads.
 function LogoWithFallback({ name, size }) {
   const slug = name.toLowerCase().replace(/[^a-z0-9]/g, '')
-  const candidates = [
-    `/logos/${slug}.svg`,
-    `/logos/${slug}.png`,
-    `/logos/${encodeURIComponent(name)}.svg`,
-    `/logos/${encodeURIComponent(name)}.png`,
-  ]
+  // Accept several naming styles: <slug>.svg/png/jpg, <slug>_logo.*, <Name>.*
+  const candidates = []
+  for (const ext of ['svg', 'png', 'jpg', 'jpeg']) {
+    candidates.push(`/logos/${slug}.${ext}`)
+    candidates.push(`/logos/${slug}_logo.${ext}`)
+    candidates.push(`/logos/${encodeURIComponent(name)}.${ext}`)
+  }
   const [idx, setIdx] = useState(0)
   const [failed, setFailed] = useState(false)
   const fallback =
