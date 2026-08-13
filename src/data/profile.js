@@ -548,28 +548,10 @@ export const projects = [
   },
 ]
 
-// The big hero name cycles through these — each entry is a translation of
-// "Tusher Mondal" rendered in a different script and typeface. Indian
-// languages first (native Bengali up front), then the rest of the world.
+// The big hero name cycles through these — Bengali (native) first, then English
+// and Hindi. Kept intentionally short.
 export const nameVariants = [
   { text: 'তুষার মণ্ডল', lang: 'বাংলা · Bengali', font: "'Noto Sans Bengali','Vrinda',sans-serif", scale: 0.95 },
-  { text: 'तुषार मोंडल', lang: 'हिन्दी · Hindi', font: "'Noto Sans Devanagari','Mangal',sans-serif", scale: 0.95 },
-  { text: 'তুষাৰ মণ্ডল', lang: 'অসমীয়া · Assamese', font: "'Noto Sans Bengali','Vrinda',sans-serif", scale: 0.95 },
-  { text: 'तुषार मोंडल', lang: 'मराठी · Marathi', font: "'Noto Sans Devanagari','Mangal',sans-serif", scale: 0.95 },
-  { text: 'તુષાર મોંડલ', lang: 'ગુજરાતી · Gujarati', font: "'Noto Sans Gujarati','Nirmala UI',sans-serif", scale: 0.92 },
-  { text: 'ਤੁਸ਼ਾਰ ਮੋਂਡਲ', lang: 'ਪੰਜਾਬੀ · Punjabi', font: "'Noto Sans Gurmukhi','Nirmala UI',sans-serif", scale: 0.92 },
-  { text: 'துஷார் மொண்டால்', lang: 'தமிழ் · Tamil', font: "'Noto Sans Tamil','Nirmala UI',sans-serif", scale: 0.85 },
-  { text: 'తుషార్ మొండాల్', lang: 'తెలుగు · Telugu', font: "'Noto Sans Telugu','Nirmala UI',sans-serif", scale: 0.85 },
-  { text: 'ತುಷಾರ್ ಮೊಂಡಲ್', lang: 'ಕನ್ನಡ · Kannada', font: "'Noto Sans Kannada','Nirmala UI',sans-serif", scale: 0.85 },
-  { text: 'തുഷാർ മൊണ്ടാൽ', lang: 'മലയാളം · Malayalam', font: "'Noto Sans Malayalam','Nirmala UI',sans-serif", scale: 0.85 },
-  { text: 'ତୁଷାର ମଣ୍ଡଲ', lang: 'ଓଡ଼ିଆ · Odia', font: "'Noto Sans Odia','Nirmala UI',sans-serif", scale: 0.88 },
-  { text: 'تشار منڈل', lang: 'اردو · Urdu', font: "'Noto Nastaliq Urdu','Jameel Noori Nastaleeq',serif", scale: 0.7 },
-  { text: 'तुषार मण्डल', lang: 'संस्कृतम् · Sanskrit', font: "'Noto Sans Devanagari','Mangal',sans-serif", scale: 0.95 },
   { text: 'Tusher Mondal', lang: 'English', font: "'Fraunces', Georgia, serif", italic: true, scale: 1 },
-  { text: '투셔 몬달', lang: '한국어 · Korean', font: "'Noto Sans KR','Malgun Gothic',sans-serif", scale: 0.95 },
-  { text: 'トゥシャー・モンダル', lang: '日本語 · Japanese', font: "'Noto Sans JP','Yu Gothic',sans-serif", scale: 0.62 },
-  { text: '图舍尔·蒙达尔', lang: '中文 · Chinese', font: "'Noto Sans SC','SimSun',serif", scale: 0.78 },
-  { text: 'Тушер Мондал', lang: 'Русский · Russian', font: "'Noto Sans',sans-serif", scale: 0.72 },
-  { text: 'توشير موندال', lang: 'العربية · Arabic', font: "'Noto Naskh Arabic','Traditional Arabic',serif", scale: 0.68 },
-  { text: 'Τουσέρ Μόνταλ', lang: 'Ελληνικά · Greek', font: "'Noto Serif',serif", scale: 0.6 },
+  { text: 'तुषार मोंडल', lang: 'हिन्दी · Hindi', font: "'Noto Sans Devanagari','Mangal',sans-serif", scale: 0.95 },
 ]
