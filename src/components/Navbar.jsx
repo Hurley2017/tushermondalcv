@@ -1,71 +1,69 @@
 import { useEffect, useState } from 'react'
 import { navLinks, profile } from '../data/profile.js'
 import { Icon } from './icons.jsx'
+import { getTheme, toggleTheme } from '../lib/theme.js'
 
-export default function Navbar({ route = 'home' }) {
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [active, setActive] = useState('')
+  const [active, setActive] = useState('about')
   const [open, setOpen] = useState(false)
+  const [theme, setTheme] = useState(getTheme)
+  const sectionIds = navLinks.map((l) => l.id)
 
   useEffect(() => {
-    if (route !== 'home') {
-      setActive('about')
-      setScrolled(true)
-      return
-    }
     const onScroll = () => {
       setScrolled(window.scrollY > 24)
+      // Robust scroll-spy: the last section whose top is above the navbar.
       let current = ''
-      for (const link of navLinks) {
-        if (link.page) continue
-        const el = document.getElementById(link.id)
-        if (el && el.getBoundingClientRect().top <= 140) current = link.id
+      for (const id of sectionIds) {
+        const el = document.getElementById(id)
+        if (el && el.getBoundingClientRect().top <= 140) current = id
       }
-      setActive(current)
+      // Bottom of the page → keep the last section highlighted.
+      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) {
+        current = sectionIds[sectionIds.length - 1]
+      }
+      // Near the top → highlight the first section.
+      if (window.scrollY < 80) current = sectionIds[0]
+      setActive(current || sectionIds[0])
     }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [route])
+    window.addEventListener('resize', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
+  }, [sectionIds])
 
-  // Swap the monogram for the profile picture once we've scrolled past the hero.
-  const showAvatar = active !== '' || route !== 'home'
+  // Show the profile picture alongside the name once we scroll past the hero.
+  const showAvatar = active !== sectionIds[0]
 
-  const goTo = (e, link) => {
+  const onToggleTheme = () => {
+    const next = toggleTheme()
+    setTheme(next)
+  }
+
+  const goTo = (e, id) => {
     e.preventDefault()
     setOpen(false)
-    if (link.page) {
-      window.location.hash = '#/projects'
-      return
-    }
-    if (route !== 'home') {
-      window.location.hash = '#/'
-      setTimeout(() => document.getElementById(link.id)?.scrollIntoView({ behavior: 'smooth' }), 60)
-      return
-    }
-    document.getElementById(link.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   const goHome = (e) => {
     e.preventDefault()
     setOpen(false)
-    if (route !== 'home') {
-      window.location.hash = '#/'
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
-    <header className={`nav ${scrolled || route !== 'home' ? 'nav--scrolled' : ''}`}>
+    <header className={`nav ${scrolled ? 'nav--scrolled' : ''}`}>
       <div className="nav__inner container">
-        <a href="#/" className="nav__brand" onClick={goHome} aria-label="Tusher Mondal — home">
-          {showAvatar ? (
+        <a href="#top" className="nav__brand" onClick={goHome} aria-label="Tusher Mondal — top">
+          {showAvatar && (
             <span className="nav__brand-avatar">
               <img src={profile.avatar} alt={profile.name} />
             </span>
-          ) : (
-            <span className="nav__brand-mark">TM</span>
           )}
           <span className="nav__brand-text">{profile.name}</span>
         </a>
@@ -74,9 +72,9 @@ export default function Navbar({ route = 'home' }) {
           {navLinks.map((link) => (
             <a
               key={link.id}
-              href={link.page ? '#/projects' : `#${link.id}`}
+              href={`#${link.id}`}
               className={`nav__link ${active === link.id ? 'is-active' : ''}`}
-              onClick={(e) => goTo(e, link)}
+              onClick={(e) => goTo(e, link.id)}
             >
               {link.label}
             </a>
@@ -85,6 +83,15 @@ export default function Navbar({ route = 'home' }) {
             <Icon name="download" size={14} /> Get CV
           </a>
         </nav>
+
+        <button
+          className="nav__theme"
+          onClick={onToggleTheme}
+          aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+        >
+          <Icon name={theme === 'dark' ? 'sun' : 'moon'} size={17} />
+        </button>
 
         <button
           className={`nav__toggle ${open ? 'is-open' : ''}`}

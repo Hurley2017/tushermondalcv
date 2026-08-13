@@ -52,7 +52,7 @@ export const profile = {
   stats: [
     { value: '28+', label: 'Public repositories' },
     { value: '200+', label: 'Problems solved' },
-    { value: '5', label: 'Internships & roles' },
+    { value: '5', label: 'Roles & Internships' },
     { value: '9+', label: 'Years of coding' },
   ],
 }
@@ -60,15 +60,18 @@ export const profile = {
 export const navLinks = [
   { id: 'about', label: 'About' },
   { id: 'experience', label: 'Experience' },
-  { id: 'projects', label: 'Projects', page: true },
-  { id: 'skills', label: 'Skills' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'education', label: 'Education' },
+  { id: 'achievements', label: 'Achievements' },
   { id: 'hobbies', label: 'Hobbies' },
+  { id: 'skills', label: 'Skills' },
   { id: 'contact', label: 'Contact' },
 ]
 
 export const experience = [
   {
     role: 'Manager — Management Reporting — CIB',
+    brand: 'HSBC',
     company: 'HSBC',
     companyUrl: 'https://www.hsbc.com/',
     period: 'Jul 2024 — Present',
@@ -90,6 +93,7 @@ export const experience = [
   },
   {
     role: 'Analyst Intern',
+    brand: 'HSBC',
     company: 'HSBC',
     companyUrl: 'https://www.hsbc.com/',
     period: 'Jan 2024 — Jul 2024',
@@ -110,6 +114,7 @@ export const experience = [
   },
   {
     role: 'Data Science Intern',
+    brand: 'Celebal',
     company: 'Celebal Technologies',
     companyUrl: 'https://celebaltech.com/',
     period: 'Jun 2023 — Aug 2023',
@@ -130,6 +135,7 @@ export const experience = [
   },
   {
     role: 'Python Development Intern',
+    brand: 'CodeClause',
     company: 'CodeClause',
     companyUrl: 'https://codeclause.com/',
     period: 'May 2023 — Jun 2023',
@@ -150,6 +156,7 @@ export const experience = [
   },
   {
     role: 'Software Developer Intern',
+    brand: 'Phoenix',
     company: 'Phoenix India Research & Development Group',
     companyUrl: 'https://www.phoenixindiabiogas.com/',
     period: 'May 2022 — Oct 2022',
@@ -173,6 +180,7 @@ export const experience = [
 export const education = [
   {
     school: 'Jadavpur University',
+    brand: 'JU',
     url: 'http://www.jaduniv.edu.in/',
     degree: 'Master of Computer Applications (MCA) — Computer Engineering',
     period: 'Sep 2022 — Jun 2024',
@@ -186,6 +194,7 @@ export const education = [
   },
   {
     school: 'Acharya Prafulla Chandra College (West Bengal State University)',
+    brand: 'APCC',
     url: 'https://apccollege.ac.in/',
     degree: "B.Sc (Hons) — Computer Science",
     period: 'Jun 2019 — Aug 2022',
@@ -199,6 +208,7 @@ export const education = [
   },
   {
     school: 'Nebadhai High School (WBCHSE)',
+    brand: 'WBCHSE',
     url: 'https://wbchse.nic.in/',
     degree: 'Higher Secondary — Mathematics & Computer Science',
     period: 'Apr 2016 — May 2019',
@@ -208,6 +218,7 @@ export const education = [
   },
   {
     school: 'Duttapukur Adarsha Vidyapith (WBBSE)',
+    brand: 'WBBSE',
     url: 'https://wbbse.wb.gov.in/',
     degree: 'Secondary — General Studies',
     period: 'Jan 2010 — Jan 2016',
@@ -326,6 +337,13 @@ export const projects = [
       'Embedded SDXL/RealVisXL image backend with CPU offload',
       'Orpheus 3B narrator with inline emotion tags and dual voices',
     ],
+    brands: ['Python', 'LLM', 'SDXL', 'TTS'],
+    learnings: [
+      'Orchestrating a multi-stage local AI pipeline with automatic model selection',
+      'Generating photorealistic images with SDXL / RealVisXL on limited VRAM',
+      'Building dual-voice audiobook narration with emotion tags (Orpheus TTS)',
+      'Designing fault-tolerant pipelines with schema-aware retries and fallbacks',
+    ],
     tech: ['Python', 'LLM', 'SDXL', 'TTS', 'PDF'],
     github: 'https://github.com/Hurley2017/Writer',
     demo: null,
@@ -351,6 +369,12 @@ export const projects = [
       'Procedural audio synthesis driven by engine physics',
       'Pulse attack shaping: sharp “kut” revvers vs soft “dug” thumpers',
       'Idle sub-bass thump, gated vibration rumble and mechanical texture',
+    ],
+    brands: ['JavaScript', 'Web Audio API'],
+    learnings: [
+      'Synthesizing procedural audio from physics parameters in the browser',
+      'Shaping perceived sound character through attack envelopes and tuning',
+      'Iterating on realism with gating, sub-bass and mechanical texture',
     ],
     tech: ['JavaScript', 'Web Audio API'],
     github: 'https://github.com/Hurley2017/Piston-And-Sound',
@@ -378,6 +402,11 @@ export const projects = [
       'Minimal system resource footprint',
       'Old-school, limited-feature design philosophy',
     ],
+    brands: ['Rust'],
+    learnings: [
+      'Writing resource-efficient systems in Rust',
+      'Keeping software minimal and focused — less is more',
+    ],
     tech: ['Rust'],
     github: 'https://github.com/Hurley2017/Rusty_Radio',
     demo: null,
@@ -401,6 +430,12 @@ export const projects = [
       'Gesture-to-mouse-action mapping',
       'Computer vision with OpenCV',
     ],
+    brands: ['Python', 'OpenCV'],
+    learnings: [
+      'Real-time computer vision with OpenCV hand tracking',
+      'Mapping gesture space to reliable mouse control',
+      'Debugging CV pipelines across real-world lighting conditions',
+    ],
     tech: ['Python', 'OpenCV', 'CV'],
     github: 'https://github.com/Hurley2017/HandMouse',
     demo: null,
@@ -420,6 +455,12 @@ export const projects = [
       'Web-based attack graph generation and visualization',
       'Supports the MulVAL thesis: network-simulated digital forensics',
       'Full-stack deployment on Vercel',
+    ],
+    brands: ['Python', 'JavaScript', 'Graph'],
+    learnings: [
+      'Modeling attack graphs from MulVAL output',
+      'Building a full-stack visualization tool with a backend',
+      'Deploying multi-service apps to Vercel',
     ],
     tech: ['Python', 'JavaScript', 'Graph'],
     github: 'https://github.com/Hurley2017/AGG_WEB',
@@ -441,6 +482,12 @@ export const projects = [
       'Built as the Celebal Technologies internship project',
       'Live deployment on Vercel',
     ],
+    brands: ['Python', 'scikit-learn', 'ML'],
+    learnings: [
+      'Text classification with scikit-learn',
+      'Feature engineering for email spam detection',
+      'Shipping an ML application to production on Vercel',
+    ],
     tech: ['Python', 'scikit-learn', 'ML'],
     github: 'https://github.com/Hurley2017/Email_Spam',
     demo: 'https://email-spam-tusher.vercel.app',
@@ -461,6 +508,12 @@ export const projects = [
       'Automatic chunk signing for efficient reassembly and faster transfer',
       'Full network interface capacity utilization',
     ],
+    brands: ['Python', 'Sockets', 'TCP/IP'],
+    learnings: [
+      'Socket programming and TCP/IP fundamentals',
+      'Chunked transfer with automatic signing for reliable reassembly',
+      'Utilizing full NIC capacity for fast transfers',
+    ],
     tech: ['Python', 'Sockets', 'TCP/IP'],
     github: 'https://github.com/Hurley2017/Socket_Streaming',
     demo: null,
@@ -477,6 +530,11 @@ export const projects = [
     description:
       'A web view framework that renders binary files into a pivot-like structure, making raw binary data explorable in the browser.',
     highlights: ['Binary file → pivot structure rendering', 'In-browser data exploration'],
+    brands: ['HTML', 'JavaScript'],
+    learnings: [
+      'Rendering binary data in the browser',
+      'Building a pivot-style exploration UI',
+    ],
     tech: ['HTML', 'JavaScript'],
     github: 'https://github.com/Hurley2017/Perspective_Pivot',
     demo: null,
@@ -486,4 +544,21 @@ export const projects = [
       { message: 'Initial project commit', date: 'Apr 28, 2025' },
     ],
   },
+]
+
+// The big hero name cycles through these — each entry is a translation of
+// "Tusher Mondal" rendered in a different script and typeface.
+export const nameVariants = [
+  { text: 'Tusher Mondal', lang: 'English', font: "'Fraunces', Georgia, serif", italic: true },
+  { text: 'तुषार मोंडल', lang: 'हिन्दी · Hindi', font: "'Noto Sans Devanagari','Mangal',sans-serif" },
+  { text: 'তুষার মণ্ডল', lang: 'বাংলা · Bengali', font: "'Noto Sans Bengali','Vrinda',sans-serif" },
+  { text: '투셔 몬달', lang: '한국어 · Korean', font: "'Noto Sans KR','Malgun Gothic',sans-serif" },
+  { text: 'トゥシャー・モンダル', lang: '日本語 · Japanese', font: "'Noto Sans JP','Yu Gothic',sans-serif" },
+  { text: '图舍尔·蒙达尔', lang: '中文 · Chinese', font: "'Noto Sans SC','SimSun',serif" },
+  { text: 'Тушер Мондал', lang: 'Русский · Russian', font: "'Noto Sans',sans-serif" },
+  { text: 'توشير موندال', lang: 'العربية · Arabic', font: "'Noto Naskh Arabic','Traditional Arabic',serif" },
+  { text: 'Τουσέρ Μόνταλ', lang: 'Ελληνικά · Greek', font: "'Noto Serif',serif" },
+  { text: 'Tusher Mondal', lang: 'Español', font: "'Georgia', serif", italic: true },
+  { text: 'Tusher Mondal', lang: 'Français', font: "'Courier New', monospace" },
+  { text: 'Tusher Mondal', lang: 'Deutsch', font: "Arial, sans-serif" },
 ]

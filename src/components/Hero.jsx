@@ -1,5 +1,39 @@
-import { profile } from '../data/profile.js'
+import { useEffect, useState } from 'react'
+import { profile, nameVariants } from '../data/profile.js'
 import { Icon } from './icons.jsx'
+
+// The big hero name cycles through "Tusher Mondal" in many languages & scripts.
+function AnimatedName() {
+  const [index, setIndex] = useState(0)
+  const [visible, setVisible] = useState(true)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setVisible(false)
+      window.setTimeout(() => {
+        setIndex((i) => (i + 1) % nameVariants.length)
+        setVisible(true)
+      }, 400)
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [])
+
+  const v = nameVariants[index]
+
+  return (
+    <div className="hero__name-wrap">
+      <h1 className="hero__name" aria-label="Tusher Mondal">
+        <span
+          className={`name-cycle ${visible ? 'is-in' : 'is-out'}`}
+          style={{ fontFamily: v.font, fontStyle: v.italic ? 'italic' : 'normal' }}
+        >
+          {v.text}
+        </span>
+      </h1>
+      <span className="hero__lang">{v.lang}</span>
+    </div>
+  )
+}
 
 export default function Hero() {
   return (
@@ -7,9 +41,7 @@ export default function Hero() {
       <div className="container hero__inner">
         <div className="hero__content">
           <span className="hero__eyebrow">Hi, my name is</span>
-          <h1 className="hero__name">
-            {profile.firstName} <em>{profile.lastName}</em>
-          </h1>
+          <AnimatedName />
           <p className="hero__role">{profile.role}</p>
           <p className="hero__tagline">{profile.tagline}</p>
 

@@ -7,16 +7,30 @@ export default function Contact() {
     <section id="contact" className="section section--alt">
       <div className="container">
         <Reveal className="contact">
-          <span className="contact__eyebrow">What's next?</span>
-          <h2 className="contact__title">Let's build something together</h2>
+          <span className="contact__eyebrow">Let's build something together</span>
+          <h2 className="contact__title">Get in touch</h2>
           <p className="contact__text">
-            I'm always open to interesting conversations, internships, freelance work or just
-            chatting about software. My inbox is always open — I'll get back to you as soon as I
-            can.
+            I'm always open to interesting conversations, collaborations and opportunities —
+            reach out any time.
           </p>
-          <a className="btn btn--primary btn--lg" href={`mailto:${profile.email}`}>
-            <Icon name="mail" size={18} /> {profile.email}
-          </a>
+          <div className="contact__actions">
+            <a
+              className="btn btn--primary btn--lg"
+              href={`mailto:${profile.email}`}
+              aria-label="Send an email"
+              title="Send an email"
+            >
+              <Icon name="mail" size={20} /> Email
+            </a>
+            <a
+              className="btn btn--ghost btn--lg"
+              href={`tel:${profile.phone.replace(/[^+\d]/g, '')}`}
+              aria-label="Call me"
+              title="Call me"
+            >
+              <Icon name="phone" size={20} /> Call
+            </a>
+          </div>
           <div className="contact__socials">
             {profile.socials.map((s) => (
               <a

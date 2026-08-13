@@ -1,4 +1,5 @@
 import { education } from '../data/profile.js'
+import BrandBadge from './Brand.jsx'
 import Reveal from './Reveal.jsx'
 
 export default function Education() {
@@ -17,6 +18,7 @@ export default function Education() {
               <article className="card timeline__card">
                 <header className="timeline__head">
                   <div>
+                    {entry.brand && <BrandBadge name={entry.brand} />}
                     <h3 className="timeline__role">{entry.school}</h3>
                     <p className="timeline__company">{entry.degree}</p>
                   </div>

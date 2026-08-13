@@ -1,4 +1,5 @@
 import { experience } from '../data/profile.js'
+import BrandBadge from './Brand.jsx'
 import Reveal from './Reveal.jsx'
 
 export default function Experience() {
@@ -17,6 +18,7 @@ export default function Experience() {
               <article className="card timeline__card">
                 <header className="timeline__head">
                   <div>
+                    {job.brand && <BrandBadge name={job.brand} />}
                     <h3 className="timeline__role">
                       {job.role}
                       {job.current && <span className="timeline__current">Current</span>}
