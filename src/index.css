@@ -1414,6 +1414,26 @@ button {
   border-color: var(--accent);
 }
 
+/* Theme toggle lives in the footer on mobile only (navbar hides its own) */
+.footer__theme {
+  display: none;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  background: var(--card);
+  color: var(--muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.footer__theme:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
 /* ---------- Commits ---------- */
 .commits {
   margin-top: 22px;
@@ -1660,11 +1680,43 @@ button {
   }
 
   .footer__bar {
-    justify-content: center;
+    justify-content: space-between;
     text-align: center;
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+
+  .footer .container {
+    padding: 0 16px;
+  }
+
+  .footer__left {
+    gap: 6px;
+    flex-wrap: nowrap;
+  }
+
+  .footer__connect {
+    font-size: 0.88rem;
   }
 
   .footer__icons {
     justify-content: center;
+    gap: 6px;
+    flex-wrap: nowrap;
+  }
+
+  .footer__theme {
+    display: grid;
+  }
+
+  /* Back-to-top floats above the footer on mobile so it never crowds the line */
+  .footer__top {
+    position: absolute;
+    right: 14px;
+    top: -48px;
+  }
+
+  .nav__theme {
+    display: none;
   }
 }

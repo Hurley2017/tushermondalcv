@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
 import { profile } from '../data/profile.js'
 import { Icon } from './icons.jsx'
+import { getTheme, toggleTheme } from '../lib/theme.js'
 
 // Fixed bottom bar — "Connect". Back-to-top button appears once the visitor
-// has scrolled past 30% of the page.
+// has scrolled past 30% of the page. On mobile the theme toggle moves here
+// (the navbar hides its own on small screens).
 export default function Footer() {
   const [showTop, setShowTop] = useState(false)
+  const [theme, setTheme] = useState(getTheme)
 
   useEffect(() => {
     const onScroll = () => {
@@ -19,6 +22,7 @@ export default function Footer() {
   }, [])
 
   const toTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
+  const onToggleTheme = () => setTheme(toggleTheme())
 
   return (
     <footer className="footer">
@@ -54,6 +58,15 @@ export default function Footer() {
           </button>
         </div>
         <div className="footer__icons">
+          <button
+            type="button"
+            className="footer__theme"
+            onClick={onToggleTheme}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+          >
+            <Icon name={theme === 'dark' ? 'sun' : 'moon'} size={16} />
+          </button>
           <a className="btn btn--primary btn--sm footer__cv" href={profile.cvPdf} download>
             <Icon name="download" size={14} /> Get CV
           </a>
