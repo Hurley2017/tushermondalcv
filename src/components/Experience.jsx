@@ -34,6 +34,16 @@ export default function Experience() {
                     <li key={h}>{h}</li>
                   ))}
                 </ul>
+                {job.learnings && job.learnings.length > 0 && (
+                  <div className="timeline__learn">
+                    <h4 className="timeline__learn-title">Key learnings</h4>
+                    <ul className="timeline__learn-list">
+                      {job.learnings.map((l) => (
+                        <li key={l}>{l}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
                 <div className="tags">
                   {job.tech.map((t) => (
                     <span key={t} className="tag">

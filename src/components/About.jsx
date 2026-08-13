@@ -34,12 +34,14 @@ export default function About() {
               <Icon name="phone" size={16} />
               <span>{profile.phone}</span>
             </div>
-            <div className="about__row">
-              <Icon name="globe" size={16} />
-              <a href={profile.website} target="_blank" rel="noreferrer">
-                tushermondal.ml
-              </a>
-            </div>
+            <h3 className="about__subtitle">Languages</h3>
+            <ul className="about__languages">
+              {profile.languages.map((lang) => (
+                <li key={lang.name}>
+                  <strong>{lang.name}</strong> — {lang.level}
+                </li>
+              ))}
+            </ul>
             <a className="btn btn--ghost btn--block" href={profile.cvPdf} download>
               <Icon name="download" size={15} /> Download CV
             </a>

@@ -5,16 +5,17 @@ export const profile = {
   name: 'Tusher Mondal',
   firstName: 'Tusher',
   lastName: 'Mondal',
-  role: 'Data Analyst at HSBC',
+  role: 'Manager — Management Reporting — CIB',
+  company: 'HSBC',
+  headline: "Manager — Management Reporting — CIB @ HSBC | JU'24 MCA",
   tagline:
     'I turn messy data into decisions and build applications that solve real-world problems — analytics by day, engineering by passion.',
   location: 'Bengaluru, Karnataka, India',
   email: 'tusher9073mondal@gmail.com',
   phone: '+91 91230 90573',
-  website: 'https://www.tushermondal.ml/',
   avatar: '/avatar.webp',
   resumeNote:
-    "I'm a Data Analyst at HSBC working with Excel, Power BI, TM1 and Alteryx for enterprise data analytics — and I love building applications that solve real-life problems. With an MCA from Jadavpur University and a B.Sc (Hons) in Computer Science, I sit at the intersection of analytics and engineering: crafting data-driven insights, automating workflows, and shipping full-stack apps in Python, JavaScript and Rust.",
+    "I'm a Manager in Management Reporting (CIB) at HSBC, working with Excel, Power BI, TM1 and Alteryx for enterprise data analytics — and I love building applications that solve real-life problems. With an MCA from Jadavpur University and a B.Sc (Hons) in Computer Science, I sit at the intersection of analytics and engineering: crafting data-driven insights, automating workflows, and shipping full-stack apps in Python, JavaScript and Rust.",
   cvPdf: '/Tusher_Mondal_CV.pdf',
   cvTex: '/Tusher_Mondal_CV.tex',
   socials: [
@@ -37,17 +38,16 @@ export const profile = {
       icon: 'code',
     },
     {
-      label: 'X / Twitter',
-      handle: '@HurleyLuciefer',
-      url: 'https://twitter.com/HurleyLuciefer',
-      icon: 'twitter',
+      label: 'Steam',
+      handle: 'Tusher_Mondal',
+      url: 'https://steamcommunity.com/id/Tusher_Mondal/',
+      icon: 'steam',
     },
-    {
-      label: 'Website',
-      handle: 'tushermondal.ml',
-      url: 'https://www.tushermondal.ml/',
-      icon: 'globe',
-    },
+  ],
+  languages: [
+    { name: 'Bengali', level: 'Native / Bilingual' },
+    { name: 'English', level: 'Professional working' },
+    { name: 'Hindi', level: 'Limited working' },
   ],
   stats: [
     { value: '28+', label: 'Public repositories' },
@@ -68,20 +68,25 @@ export const navLinks = [
 
 export const experience = [
   {
-    role: 'Data Analyst',
+    role: 'Manager — Management Reporting — CIB',
     company: 'HSBC',
     companyUrl: 'https://www.hsbc.com/',
-    period: 'Present',
+    period: 'Jul 2024 — Present',
     current: true,
     location: 'Bengaluru, India',
     summary:
-      'Enterprise data analytics at one of the world’s largest banking groups — turning raw numbers into actionable insights and automated workflows.',
+      'Full-time role at HSBC after converting from an analyst internship — management reporting for the Corporate & Investment Banking division.',
     highlights: [
-      'Build data-driven insights and automated reporting for enterprise stakeholders',
+      'Own management reporting and data-quality workflows for CIB stakeholders',
       'Work across the analytics stack with Excel, Power BI, TM1 and Alteryx',
-      'Automate repetitive tasks by building custom internal tools that streamline workflows',
+      'Automate repetitive tasks with custom internal tools that streamline workflows',
     ],
-    tech: ['Excel', 'Power BI', 'TM1', 'Alteryx', 'SQL', 'Python'],
+    learnings: [
+      'Enterprise reporting at scale in a global banking environment',
+      'Deep practical mastery of Power BI, Power Query, VBA & Excel automation',
+      'Cross-team collaboration with finance and technology stakeholders',
+    ],
+    tech: ['Excel', 'VBA', 'Power BI', 'TM1', 'Alteryx', 'SQL', 'Python'],
   },
   {
     role: 'Analyst Intern',
@@ -90,11 +95,16 @@ export const experience = [
     period: 'Jan 2024 — Jul 2024',
     location: 'Chennai, India',
     summary:
-      'Built automation and reporting systems that monitor data quality across businesses and regions during my HSBC internship.',
+      'Seven-month analyst internship at HSBC that led to a full-time conversion — building automation and reporting systems that monitor data quality across businesses and regions.',
     highlights: [
       'Automated generation of email reports monitoring data quality across specified businesses and regions',
       'Automated repetitive tasks with custom internal tools, maximizing time efficiency and productivity',
       'Uncovered business trends through data exploration and visualization',
+    ],
+    learnings: [
+      'Translating business requirements into reliable, scheduled automations',
+      'Data-quality monitoring patterns used in large enterprises',
+      'Python office-automation stack: pandas, openpyxl, xlwings, pywin32',
     ],
     tech: ['Python', 'pandas', 'openpyxl', 'xlwings', 'Power Query', 'Excel'],
   },
@@ -103,42 +113,60 @@ export const experience = [
     company: 'Celebal Technologies',
     companyUrl: 'https://celebaltech.com/',
     period: 'Jun 2023 — Aug 2023',
-    location: 'Remote',
+    location: 'Remote · CSI Summer Internship 2023',
     summary:
-      'Built forecasting models and interactive dashboards for usage analytics in a data-science internship.',
+      'CSI Summer Internship — data science fundamentals and machine learning under the mentorship of a senior data scientist.',
     highlights: [
-      'Created a forecasting model using user traits to track behavior and predict future bandwidth consumption',
-      'Developed an interactive full-stack panel visualizing usage reports across various metrics',
+      'Created a forecasting model using user traits to predict future bandwidth consumption',
+      'Developed an interactive full-stack panel visualizing usage reports across metrics',
+      'Reviewed and reinforced Statistics & Data Science fundamentals with mentor Devesh Vijay',
+    ],
+    learnings: [
+      'End-to-end ML model development and performance evaluation',
+      'Harmonizing teamwork toward weekly ML objectives across applications',
+      'Statistical foundations for real-world forecasting',
     ],
     tech: ['Python', 'pandas', 'scikit-learn', 'Data Space', 'NoSQL'],
   },
   {
-    role: 'Python Developer Intern',
+    role: 'Python Development Intern',
     company: 'CodeClause',
     companyUrl: 'https://codeclause.com/',
     period: 'May 2023 — Jun 2023',
-    location: 'Remote',
+    location: 'Kolkata, India · Remote',
     summary:
-      'Shipped developer tools in a Python internship — a URL shortener and a Gemini-powered voice assistant.',
+      'Shipped three developer tools in a Python internship — a URL shortener, a GUI alarm clock, and a Gemini-powered voice assistant.',
     highlights: [
-      'Created a web-based URL shortener with database mapping for sharing large URLs',
-      'Engineered a voice assistant CLI leveraging Google Gemini to mimic conversation',
+      'Created a web-based URL shortener with Python, Flask and MongoDB',
+      'Streamlined an Alarm Clock with a GUI using Python & Tkinter and the play-sound library',
+      'Engineered a Voice Assistant CLI using pyttsx3, speech recognition and the Bard-API',
     ],
-    tech: ['Python', 'Flask', 'speech_recognition', 'Bard API', 'pyttsx3', 'MongoDB'],
+    learnings: [
+      'Full-stack patterns with Flask and database-backed services',
+      'Desktop GUI development with Tkinter',
+      'Voice interfaces — speech recognition and text-to-speech',
+    ],
+    tech: ['Python', 'Flask', 'Tkinter', 'speech_recognition', 'Bard API', 'pyttsx3', 'MongoDB'],
   },
   {
     role: 'Software Developer Intern',
     company: 'Phoenix India Research & Development Group',
     companyUrl: 'https://www.phoenixindiabiogas.com/',
     period: 'May 2022 — Oct 2022',
-    location: 'India',
+    location: 'Kolkata, India',
     summary:
-      'Kicked off my professional career in software development, learning industry workflows, code standards and shipping real software in a team environment.',
+      'Worked on advanced biometric technology — an automatic commercial authentication system using computer vision.',
     highlights: [
-      'Worked on full-stack development tasks within a professional R&D team',
-      'Learned office-to-production software development practices',
+      'Built an Automatic Commercial Authentication System using OpenCV and Dlib',
+      'Developed a threaded system to concurrently perform feature checks, boosting stability and performance',
+      'Learned industry software-development workflows in a professional R&D team',
     ],
-    tech: ['Python', 'JavaScript', 'Flask', 'Git'],
+    learnings: [
+      'Computer vision pipelines with OpenCV and facial landmarks (Dlib)',
+      'Concurrency and threading for performance-critical systems',
+      'Professional R&D engineering practices',
+    ],
+    tech: ['Python', 'OpenCV', 'Dlib', 'Threading', 'Git'],
   },
 ]
 
@@ -146,30 +174,53 @@ export const education = [
   {
     school: 'Jadavpur University',
     url: 'http://www.jaduniv.edu.in/',
-    degree: 'Master of Computer Applications (MCA)',
-    period: 'Sep 2022 — Jul 2024',
-    note: 'CGPA 8.52 [Linear Avg.]',
+    degree: 'Master of Computer Applications (MCA) — Computer Engineering',
+    period: 'Sep 2022 — Jun 2024',
+    score: 'CGPA 8.52 · Linear Avg.',
+    learnings: [
+      'Computer Networks, Machine Learning, and Advanced Programming in Python & Java',
+      'Final-year thesis: Customizing MulVAL for Attack Graph Generation',
+      'Hands-on network-simulated digital forensics',
+    ],
+    projects: ['MulVAL Attack Graph Generator (thesis)', 'Network Simulated Digital Forensics'],
   },
   {
     school: 'Acharya Prafulla Chandra College (West Bengal State University)',
     url: 'https://apccollege.ac.in/',
-    degree: 'B.Sc (Hons) — Computer Science',
-    period: 'Jul 2019 — Aug 2022',
-    note: 'CGPA 9.4',
+    degree: "B.Sc (Hons) — Computer Science",
+    period: 'Jun 2019 — Aug 2022',
+    score: 'CGPA 9.4',
+    learnings: [
+      'Core CS foundations — data structures, databases, operating systems',
+      'Started competitive programming seriously',
+      'Built first full-stack applications',
+    ],
+    projects: ['Railway Reservation System (Flask + MongoDB)', 'Socket Transfer (P2P file sharing)'],
   },
   {
     school: 'Nebadhai High School (WBCHSE)',
     url: 'https://wbchse.nic.in/',
-    degree: 'Higher Secondary — Science',
-    period: '2016 — 2019',
-    note: 'Secured 80%',
+    degree: 'Higher Secondary — Mathematics & Computer Science',
+    period: 'Apr 2016 — May 2019',
+    score: '80%',
+    learnings: ['Strong foundation in mathematics and logic', 'First formal exposure to programming'],
+    projects: [],
+  },
+  {
+    school: 'Duttapukur Adarsha Vidyapith (WBBSE)',
+    url: 'https://wbbse.wb.gov.in/',
+    degree: 'Secondary — General Studies',
+    period: 'Jan 2010 — Jan 2016',
+    score: '75%',
+    learnings: ['Discipline and problem-solving fundamentals'],
+    projects: [],
   },
 ]
 
 export const skillGroups = [
   {
     title: 'Data & Analytics',
-    skills: ['Excel', 'Power BI', 'TM1', 'Alteryx', 'Pandas', 'NumPy', 'Power Query', 'SQL'],
+    skills: ['Excel', 'VBA', 'Power BI', 'Power Query', 'TM1', 'Alteryx', 'Pandas', 'NumPy', 'SQL'],
   },
   {
     title: 'Languages',
@@ -177,7 +228,7 @@ export const skillGroups = [
   },
   {
     title: 'Frameworks & Libraries',
-    skills: ['React', 'Node.js', 'Flask', 'Django', 'Express', 'scikit-learn', 'WebSockets'],
+    skills: ['React', 'Node.js', 'Flask', 'Django', 'Express', 'scikit-learn', 'OpenCV', 'WebSockets'],
   },
   {
     title: 'Databases',
@@ -202,7 +253,9 @@ export const hobbies = [
   {
     icon: 'gamepad',
     title: 'Gaming',
-    desc: 'Genshin Impact enthusiast (yes, that’s Yelan in my profile picture) and a fan of well-designed puzzle games.',
+    desc: 'Steam regular with 22 games and 47+ hours in Need for Speed Unbound. Genshin Impact fan too — that’s Yelan in the old avatar.',
+    link: 'https://steamcommunity.com/id/Tusher_Mondal/',
+    linkLabel: 'View my Steam profile',
   },
   {
     icon: 'music',
@@ -213,16 +266,6 @@ export const hobbies = [
     icon: 'camera',
     title: 'Photography',
     desc: 'Long-time photography interest — capturing moments that tell stories, especially while travelling.',
-  },
-  {
-    icon: 'run',
-    title: 'Running & Marathons',
-    desc: 'Into the sport of running — I even built a complete marathon invitation site (ranbakure) for it.',
-  },
-  {
-    icon: 'chess',
-    title: 'Chess & Puzzles',
-    desc: 'Chess and logic puzzles keep the problem-solving muscles sharp between coding sessions.',
   },
   {
     icon: 'bot',
@@ -238,8 +281,12 @@ export const hobbies = [
 
 export const achievements = [
   {
+    title: 'HSBC Analyst → Manager',
+    detail: 'Converted from Analyst Intern to a full-time Manager in Management Reporting (CIB) — 2 years 8 months with the bank and counting.',
+  },
+  {
     title: 'HackerRank Certifications',
-    detail: 'Certified in Python, Java and SQL.',
+    detail: 'Certified in Python (Basic), SQL (Basic) and Java (Basic).',
   },
   {
     title: '200+ Competitive Programming Problems',
@@ -254,12 +301,8 @@ export const achievements = [
     detail: 'Customizing MulVAL for Attack Graph Generation — with network-simulated digital forensics.',
   },
   {
-    title: 'HSBC Converted Intern',
-    detail: 'Interned as an Analyst at HSBC and converted to a full-time Data Analyst role.',
-  },
-  {
-    title: '28+ Open Source Repositories',
-    detail: 'A decade of tinkering — 66+ contributions across the last year and counting.',
+    title: 'CSI Summer Internship 2023',
+    detail: 'Selected for Celebal Technologies’ data science internship under senior mentorship.',
   },
 ]
 
@@ -282,12 +325,11 @@ export const projects = [
     featured: true,
     commits: [
       {
-        message:
-          'Add local AI story writer: LLM story (LM Studio), RealVisXL images, Orpheus dual-voice audiobook',
+        message: 'Shipped the full AI story pipeline — LLM drafting, SDXL covers, Orpheus dual-voice audiobooks',
         date: 'Aug 10, 2026',
       },
       {
-        message: 'Upgrade to RealVisXL V4.0 (SDXL) for photorealistic covers; SDXL auto-detection + VRAM offload',
+        message: 'Upgraded image generation to RealVisXL V4.0 (SDXL) with VRAM offload',
         date: 'Aug 9, 2026',
       },
     ],
@@ -309,12 +351,11 @@ export const projects = [
     featured: true,
     commits: [
       {
-        message:
-          'Fix single-cylinder realism: gate vibration rumble, add idle sub-bass thump, sharper high-comp attacks',
+        message: 'Improved single-cylinder realism — gated vibration rumble, idle sub-bass, sharper attacks',
         date: 'Aug 10, 2026',
       },
       {
-        message: "Add pulse attack shape and factory tuning: sharp 'kut' revvers vs soft 'dug' thumpers",
+        message: 'Added pulse attack shaping and factory tuning for revvers vs thumpers',
         date: 'Aug 10, 2026',
       },
     ],
@@ -335,9 +376,9 @@ export const projects = [
     demo: null,
     featured: true,
     commits: [
-      { message: 'PPMG', date: 'Jul 21, 2026' },
+      { message: 'Packaged the release build', date: 'Jul 21, 2026' },
       {
-        message: 'Remove large binaries from git (use installer or download separately)',
+        message: 'Removed large binaries from the repo — moved to an installer / separate download',
         date: 'Jul 21, 2026',
       },
     ],
@@ -358,11 +399,8 @@ export const projects = [
     demo: null,
     featured: true,
     commits: [
-      {
-        message: 'a comprehensive readme for readers, stating my project doesnt entirely suck',
-        date: 'Feb 17, 2026',
-      },
-      { message: 'Well I tried a lot os things, seems out of will', date: 'Feb 17, 2026' },
+      { message: 'Wrote comprehensive project documentation', date: 'Feb 17, 2026' },
+      { message: 'Iterated on gesture-tracking experiments and tuning', date: 'Feb 17, 2026' },
     ],
   },
   {
@@ -381,8 +419,8 @@ export const projects = [
     demo: 'https://attack-graph-generator.vercel.app',
     featured: true,
     commits: [
-      { message: 'BackHost Added', date: 'Jun 7, 2024' },
-      { message: 'Update Console Commented', date: 'Jun 7, 2024' },
+      { message: 'Added backend hosting support', date: 'Jun 7, 2024' },
+      { message: 'Cleaned up console logging', date: 'Jun 7, 2024' },
     ],
   },
   {
@@ -401,8 +439,8 @@ export const projects = [
     demo: 'https://email-spam-tusher.vercel.app',
     featured: true,
     commits: [
-      { message: 'last push', date: 'Aug 7, 2023' },
-      { message: 'done!', date: 'Aug 7, 2023' },
+      { message: 'Finalized the deployment', date: 'Aug 7, 2023' },
+      { message: 'Completed the classifier pipeline', date: 'Aug 7, 2023' },
     ],
   },
   {
@@ -421,8 +459,8 @@ export const projects = [
     demo: null,
     featured: false,
     commits: [
-      { message: 'Final with Readme.md', date: 'Sep 17, 2023' },
-      { message: 'From PC', date: 'Sep 17, 2023' },
+      { message: 'Finalized the project with full documentation', date: 'Sep 17, 2023' },
+      { message: 'Synced work from the local development machine', date: 'Sep 17, 2023' },
     ],
   },
   {
@@ -437,8 +475,8 @@ export const projects = [
     demo: null,
     featured: false,
     commits: [
-      { message: 'Miracle Miracle', date: 'Apr 28, 2025' },
-      { message: 'Commit Uno', date: 'Apr 28, 2025' },
+      { message: 'Shipped the core pivot renderer', date: 'Apr 28, 2025' },
+      { message: 'Initial project commit', date: 'Apr 28, 2025' },
     ],
   },
 ]

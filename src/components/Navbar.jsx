@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react'
 import { navLinks, profile } from '../data/profile.js'
 import { Icon } from './icons.jsx'
+import { isSoundEnabled, setSoundEnabled, playClick } from '../lib/sounds.js'
 
 export default function Navbar({ route = 'home' }) {
   const [scrolled, setScrolled] = useState(false)
   const [active, setActive] = useState('')
   const [open, setOpen] = useState(false)
+  const [soundOn, setSoundOn] = useState(isSoundEnabled)
 
   useEffect(() => {
     if (route !== 'home') {
-      setActive('')
+      setActive('about')
+      setScrolled(true)
       return
     }
     const onScroll = () => {
@@ -26,6 +29,19 @@ export default function Navbar({ route = 'home' }) {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [route])
+
+  // Swap the "TM" monogram for the profile picture once we've scrolled
+  // past the hero (i.e. when the About section or later is in view).
+  const showAvatar = active !== '' || route !== 'home'
+
+  const toggleSound = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    const next = !soundOn
+    setSoundOn(next)
+    setSoundEnabled(next)
+    if (next) playClick()
+  }
 
   const goTo = (e, link) => {
     e.preventDefault()
@@ -55,21 +71,16 @@ export default function Navbar({ route = 'home' }) {
   return (
     <header className={`nav ${scrolled || route !== 'home' ? 'nav--scrolled' : ''}`}>
       <div className="nav__inner container">
-        <a href="#/" className="nav__brand" onClick={goHome}>
-          <span className="nav__brand-mark">TM</span>
-          <span className="nav__brand-text">Tusher Mondal</span>
+        <a href="#/" className="nav__brand" onClick={goHome} aria-label="Tusher Mondal — home">
+          {showAvatar ? (
+            <span className="nav__brand-avatar">
+              <img src={profile.avatar} alt={profile.name} />
+            </span>
+          ) : (
+            <span className="nav__brand-mark">TM</span>
+          )}
+          <span className="nav__brand-text">{profile.firstName}</span>
         </a>
-
-        <button
-          className={`nav__toggle ${open ? 'is-open' : ''}`}
-          aria-label="Toggle navigation"
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
 
         <nav className={`nav__links ${open ? 'is-open' : ''}`}>
           {navLinks.map((link) => (
@@ -86,6 +97,26 @@ export default function Navbar({ route = 'home' }) {
             <Icon name="download" size={14} /> Get CV
           </a>
         </nav>
+
+        <button
+          className="nav__sound"
+          onClick={toggleSound}
+          aria-label={soundOn ? 'Mute sound effects' : 'Enable sound effects'}
+          title={soundOn ? 'Sound on — click to mute' : 'Sound off — click to enable'}
+        >
+          <Icon name={soundOn ? 'speaker' : 'muted'} size={17} />
+        </button>
+
+        <button
+          className={`nav__toggle ${open ? 'is-open' : ''}`}
+          aria-label="Toggle navigation"
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </div>
     </header>
   )

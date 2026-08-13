@@ -20,6 +20,11 @@ export default function Hobbies() {
                 </span>
                 <h3 className="hobby__title">{hobby.title}</h3>
                 <p className="hobby__desc">{hobby.desc}</p>
+                {hobby.link && (
+                  <a className="hobby__link" href={hobby.link} target="_blank" rel="noreferrer">
+                    {hobby.linkLabel} <Icon name="external" size={13} />
+                  </a>
+                )}
               </article>
             </Reveal>
           ))}

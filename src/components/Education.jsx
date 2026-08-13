@@ -22,7 +22,29 @@ export default function Education() {
                   </div>
                   <span className="timeline__period">{entry.period}</span>
                 </header>
-                {entry.note && <p className="timeline__summary">{entry.note}</p>}
+                {entry.score && <p className="timeline__score">{entry.score}</p>}
+                {entry.learnings && entry.learnings.length > 0 && (
+                  <div className="timeline__learn">
+                    <h4 className="timeline__learn-title">What I learned</h4>
+                    <ul className="timeline__learn-list">
+                      {entry.learnings.map((l) => (
+                        <li key={l}>{l}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {entry.projects && entry.projects.length > 0 && (
+                  <div className="education__projects">
+                    <h4 className="timeline__learn-title">Projects</h4>
+                    <div className="tags">
+                      {entry.projects.map((p) => (
+                        <span key={p} className="tag">
+                          {p}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </article>
             </Reveal>
           ))}
