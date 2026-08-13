@@ -1,10 +1,13 @@
 # Logos status
 
-## ✅ Dropped & wired up (in `public/logos/`)
+# Logos status
+
+## ✅ All wired up (in `public/logos/`)
 
 | Key        | File                          | Brand                                  | Where |
 | ---------- | ----------------------------- | -------------------------------------- | ----- |
 | `hsbc`     | `hsbc.png`                    | HSBC                                   | Experience (2 roles) |
+| `celebal`  | `celebal.png`                 | Celebal Technologies                   | Experience |
 | `codeclause` | `codeclause.jpg`            | CodeClause                             | Experience |
 | `phoenix`  | `phoenix.png`                 | Phoenix India Research & Development Group | Experience |
 | `ju`       | `ju.png`                      | Jadavpur University                    | Education |
@@ -16,17 +19,16 @@
 | `tts`      | `tts.png`                     | Orpheus TTS                            | Projects |
 | `sockets`  | `sockets.png`                 | Socket programming                     | Projects |
 
-**Naming convention:** files must be named exactly `<key>.png/jpg` (lowercase). The loader also accepts `<key>_logo.*` and `<Name>.*`.
+Concept icons (Material Design Icons, Apache 2.0, colored to match badge accents):
 
-## ⚠️ Still missing — falls back to a colored badge
+| Key           | File                | Icon            | Where |
+| ------------- | ------------------- | --------------- | ----- |
+| `ml`          | `ml.svg`            | robot (#7c3aed) | Projects |
+| `graph`       | `graph.svg`         | graph-outline (#6d28d9) | Projects |
+| `tcpip`       | `tcpip.svg`         | lan (#334155)   | Projects |
+| `webaudioapi` | `webaudioapi.svg`   | waveform (#e11d48) | Projects |
 
-| Key        | Brand            | Where |
-| ---------- | ---------------- | ----- |
-| `celebal`  | Celebal Technologies | Experience |
-
-Drop `public/logos/celebal.png` (or `.jpg`/`.svg`) to replace the badge.
-
-Optional concept labels not dropped (badge fallback is fine): `ml`, `websockets`, `tcpip`, `graph`.
+**Naming convention:** files must be named exactly `<key>.png/jpg/svg` (lowercase). The loader also accepts `<key>_logo.*` and `<Name>.*`.
 
 ## Already done — no action needed
 

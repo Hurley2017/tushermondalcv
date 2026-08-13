@@ -63,8 +63,8 @@ export const navLinks = [
   { id: 'projects', label: 'Projects' },
   { id: 'education', label: 'Education' },
   { id: 'achievements', label: 'Achievements' },
-  { id: 'hobbies', label: 'Hobbies' },
   { id: 'skills', label: 'Skills' },
+  { id: 'hobbies', label: 'Hobbies' },
   { id: 'contact', label: 'Contact' },
 ]
 

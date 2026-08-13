@@ -23,8 +23,8 @@ export default function App() {
         <Projects />
         <Education />
         <Achievements />
-        <Hobbies />
         <Skills />
+        <Hobbies />
         <Contact />
       </main>
       <Footer />
