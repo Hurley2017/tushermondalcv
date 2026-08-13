@@ -75,6 +75,78 @@ body {
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
+/* ---------- Animated background aura ---------- */
+/* Two large blurred glows that slowly drift across the page — subtle, GPU
+   friendly (transform only) and theme-aware. In dark mode they add soft light
+   (screen blend); in light mode a faint shade (multiply blend). */
+.bg-aura {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+  mix-blend-mode: screen;
+}
+
+.bg-aura::before,
+.bg-aura::after {
+  content: '';
+  position: absolute;
+  width: 62vmax;
+  height: 62vmax;
+  border-radius: 50%;
+  filter: blur(90px);
+  will-change: transform;
+}
+
+.bg-aura::before {
+  top: -28vmax;
+  left: -20vmax;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.14), transparent 62%);
+  animation: aura-drift-a 30s ease-in-out infinite alternate;
+}
+
+.bg-aura::after {
+  bottom: -30vmax;
+  right: -22vmax;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.09), transparent 62%);
+  animation: aura-drift-b 38s ease-in-out infinite alternate;
+}
+
+[data-theme='light'] .bg-aura {
+  mix-blend-mode: multiply;
+}
+[data-theme='light'] .bg-aura::before {
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.08), transparent 62%);
+}
+[data-theme='light'] .bg-aura::after {
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.06), transparent 62%);
+}
+
+@keyframes aura-drift-a {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(7vmax, 5vmax) scale(1.12);
+  }
+  100% {
+    transform: translate(-5vmax, 9vmax) scale(0.94);
+  }
+}
+
+@keyframes aura-drift-b {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-6vmax, -7vmax) scale(1.08);
+  }
+  100% {
+    transform: translate(5vmax, -4vmax) scale(0.92);
+  }
+}
+
 h1, h2, h3, h4 {
   font-family: var(--font-head);
   line-height: 1.12;
@@ -1463,6 +1535,10 @@ button {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+  .bg-aura::before,
+  .bg-aura::after {
+    animation: none !important;
   }
 }
 

@@ -43,16 +43,16 @@ export default function Footer() {
               <Icon name="phone" size={16} />
             </a>
           </div>
+          <button
+            type="button"
+            className={`footer__top ${showTop ? 'is-visible' : ''}`}
+            onClick={toTop}
+            aria-label="Back to top"
+            title="Back to top"
+          >
+            <Icon name="arrowUp" size={16} />
+          </button>
         </div>
-        <button
-          type="button"
-          className={`footer__top ${showTop ? 'is-visible' : ''}`}
-          onClick={toTop}
-          aria-label="Back to top"
-          title="Back to top"
-        >
-          <Icon name="arrowUp" size={16} />
-        </button>
         <div className="footer__icons">
           {profile.socials.map((s) => (
             <a

@@ -18,6 +18,7 @@ const Contact = lazy(() => import('./components/Contact.jsx'))
 export default function App() {
   return (
     <>
+      <div className="bg-aura" aria-hidden="true" />
       <Cursor />
       <Navbar />
       <main>
@@ -28,8 +29,8 @@ export default function App() {
           <Experience />
           <Projects />
           <Education />
-          <Achievements />
           <Skills />
+          <Achievements />
           <Hobbies />
           <Contact />
         </Suspense>

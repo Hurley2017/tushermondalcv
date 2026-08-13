@@ -28,6 +28,10 @@ Edit that file to update the site — no component changes needed.
 This project is ready for Vercel out of the box (Vite is auto-detected).
 `vercel.json` includes an SPA rewrite so any path falls back to `index.html`.
 
+**Live at:** https://www.tusher.in (custom domain owned by Tusher — add it under
+Vercel → Project → Settings → Domains; canonical/OG/sitemap URLs in the site
+already point there).
+
 ### Option A — Vercel dashboard (recommended)
 
 Auto-deploys on every future push, no CLI needed.

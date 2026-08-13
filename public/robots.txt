@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tushermondalcv.vercel.app/sitemap.xml
+Sitemap: https://www.tusher.in/sitemap.xml

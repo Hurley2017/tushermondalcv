@@ -9,11 +9,18 @@ export const profile = {
   location: 'Bengaluru, Karnataka, India',
   email: 'tusher9073mondal@gmail.com',
   phone: '+91 91230 90573',
+  website: 'https://www.tusher.in',
   avatar: '/avatar.webp',
   resumeNote:
     "I'm a Manager in Management Reporting (CIB) at HSBC, working with Excel, Power BI, TM1 and Alteryx for enterprise data analytics — and I love building applications that solve real-life problems. A big part of my tinkering is local, on-device AI: I run LLMs through LM Studio, generate images with Stable Diffusion (SDXL / RealVisXL) and synthesize voices with Orpheus TTS — everything fully local, no cloud. With an MCA from Jadavpur University and a B.Sc (Hons) in Computer Science, I sit at the intersection of analytics and engineering: crafting data-driven insights, automating workflows, and shipping full-stack apps in Python, JavaScript and Rust.",
   cvPdf: '/Tusher_Mondal_CV.pdf',
   socials: [
+    {
+      label: 'Website',
+      handle: 'www.tusher.in',
+      url: 'https://www.tusher.in',
+      icon: 'globe',
+    },
     {
       label: 'GitHub',
       handle: 'Hurley2017',
@@ -57,8 +64,8 @@ export const navLinks = [
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
   { id: 'education', label: 'Education' },
-  { id: 'achievements', label: 'Achievements' },
   { id: 'skills', label: 'Skills' },
+  { id: 'achievements', label: 'Achievements' },
   { id: 'hobbies', label: 'Hobbies' },
   { id: 'contact', label: 'Contact' },
 ]
@@ -542,12 +549,23 @@ export const projects = [
 ]
 
 // The big hero name cycles through these — each entry is a translation of
-// "Tusher Mondal" rendered in a different script and typeface. Bengali first
-// (native), then the rest.
+// "Tusher Mondal" rendered in a different script and typeface. Indian
+// languages first (native Bengali up front), then the rest of the world.
 export const nameVariants = [
   { text: 'তুষার মণ্ডল', lang: 'বাংলা · Bengali', font: "'Noto Sans Bengali','Vrinda',sans-serif", scale: 0.95 },
-  { text: 'Tusher Mondal', lang: 'English', font: "'Fraunces', Georgia, serif", italic: true, scale: 1 },
   { text: 'तुषार मोंडल', lang: 'हिन्दी · Hindi', font: "'Noto Sans Devanagari','Mangal',sans-serif", scale: 0.95 },
+  { text: 'তুষাৰ মণ্ডল', lang: 'অসমীয়া · Assamese', font: "'Noto Sans Bengali','Vrinda',sans-serif", scale: 0.95 },
+  { text: 'तुषार मोंडल', lang: 'मराठी · Marathi', font: "'Noto Sans Devanagari','Mangal',sans-serif", scale: 0.95 },
+  { text: 'તુષાર મોંડલ', lang: 'ગુજરાતી · Gujarati', font: "'Noto Sans Gujarati','Nirmala UI',sans-serif", scale: 0.92 },
+  { text: 'ਤੁਸ਼ਾਰ ਮੋਂਡਲ', lang: 'ਪੰਜਾਬੀ · Punjabi', font: "'Noto Sans Gurmukhi','Nirmala UI',sans-serif", scale: 0.92 },
+  { text: 'துஷார் மொண்டால்', lang: 'தமிழ் · Tamil', font: "'Noto Sans Tamil','Nirmala UI',sans-serif", scale: 0.85 },
+  { text: 'తుషార్ మొండాల్', lang: 'తెలుగు · Telugu', font: "'Noto Sans Telugu','Nirmala UI',sans-serif", scale: 0.85 },
+  { text: 'ತುಷಾರ್ ಮೊಂಡಲ್', lang: 'ಕನ್ನಡ · Kannada', font: "'Noto Sans Kannada','Nirmala UI',sans-serif", scale: 0.85 },
+  { text: 'തുഷാർ മൊണ്ടാൽ', lang: 'മലയാളം · Malayalam', font: "'Noto Sans Malayalam','Nirmala UI',sans-serif", scale: 0.85 },
+  { text: 'ତୁଷାର ମଣ୍ଡଲ', lang: 'ଓଡ଼ିଆ · Odia', font: "'Noto Sans Odia','Nirmala UI',sans-serif", scale: 0.88 },
+  { text: 'تشار منڈل', lang: 'اردو · Urdu', font: "'Noto Nastaliq Urdu','Jameel Noori Nastaleeq',serif", scale: 0.7 },
+  { text: 'तुषार मण्डल', lang: 'संस्कृतम् · Sanskrit', font: "'Noto Sans Devanagari','Mangal',sans-serif", scale: 0.95 },
+  { text: 'Tusher Mondal', lang: 'English', font: "'Fraunces', Georgia, serif", italic: true, scale: 1 },
   { text: '투셔 몬달', lang: '한국어 · Korean', font: "'Noto Sans KR','Malgun Gothic',sans-serif", scale: 0.95 },
   { text: 'トゥシャー・モンダル', lang: '日本語 · Japanese', font: "'Noto Sans JP','Yu Gothic',sans-serif", scale: 0.62 },
   { text: '图舍尔·蒙达尔', lang: '中文 · Chinese', font: "'Noto Sans SC','SimSun',serif", scale: 0.78 },
