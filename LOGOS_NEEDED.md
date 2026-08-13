@@ -1,42 +1,33 @@
-# Logos needed — please drop these into the repo
+# Logos status
 
-The site is already wired to auto-load them. Just add each file at:
+## ✅ Dropped & wired up (in `public/logos/`)
 
-```
-public/logos/<key>.svg
-```
+| Key        | File                          | Brand                                  | Where |
+| ---------- | ----------------------------- | -------------------------------------- | ----- |
+| `hsbc`     | `hsbc.png`                    | HSBC                                   | Experience (2 roles) |
+| `codeclause` | `codeclause.jpg`            | CodeClause                             | Experience |
+| `phoenix`  | `phoenix.png`                 | Phoenix India Research & Development Group | Experience |
+| `ju`       | `ju.png`                      | Jadavpur University                    | Education |
+| `apcc`     | `apcc.jpg`                    | Acharya Prafulla Chandra College       | Education |
+| `wbchse`   | `wbchse.png`                  | West Bengal Council of Higher Secondary Education | Education |
+| `wbbse`    | `wbbse.jpg`                   | West Bengal Board of Secondary Education | Education |
+| `llm`      | `llm.png`                     | Local LLM / LM Studio                  | Projects |
+| `sdxl`     | `sdxl.png`                    | Stable Diffusion (SDXL)                | Projects |
+| `tts`      | `tts.png`                     | Orpheus TTS                            | Projects |
+| `sockets`  | `sockets.png`                 | Socket programming                     | Projects |
 
-**Format:** SVG preferred (transparent background, works best). PNG with a transparent background also works.
+**Naming convention:** files must be named exactly `<key>.png/jpg` (lowercase). The loader also accepts `<key>_logo.*` and `<Name>.*`.
 
-Once a file exists at `public/logos/<key>.svg`, it appears everywhere that brand is shown (Experience, Education, Projects). Until then the site shows a colored initial badge as a placeholder.
+## ⚠️ Still missing — falls back to a colored badge
 
-## Required — Companies & Schools (Experience + Education)
+| Key        | Brand            | Where |
+| ---------- | ---------------- | ----- |
+| `celebal`  | Celebal Technologies | Experience |
 
-| Key        | Brand                                          | Shown at              |
-| ---------- | ---------------------------------------------- | --------------------- |
-| `hsbc`     | HSBC                                           | Experience (2 roles)  |
-| `celebal`  | Celebal Technologies                           | Experience            |
-| `codeclause` | CodeClause                                   | Experience            |
-| `phoenix`  | Phoenix India Research & Development Group     | Experience            |
-| `ju`       | Jadavpur University                            | Education             |
-| `apcc`     | Acharya Prafulla Chandra College               | Education             |
-| `wbchse`   | West Bengal Council of Higher Secondary Education | Education          |
-| `wbbse`    | West Bengal Board of Secondary Education       | Education             |
+Drop `public/logos/celebal.png` (or `.jpg`/`.svg`) to replace the badge.
 
-## Optional — concept labels (Projects, if you have marks for them)
-
-| Key      | Label                          |
-| -------- | ------------------------------ |
-| `llm`    | Local LLM / LM Studio          |
-| `sdxl`   | Stable Diffusion (SDXL)        |
-| `tts`    | Orpheus TTS                    |
-| `ml`     | Machine Learning               |
-| `websockets` | WebSockets                  |
-| `sockets` | Socket programming             |
-| `tcpip`  | TCP/IP                         |
-| `graph`  | Graph / Attack graphs          |
+Optional concept labels not dropped (badge fallback is fine): `ml`, `websockets`, `tcpip`, `graph`.
 
 ## Already done — no action needed
 
-These real logos are embedded in the code already:
-Python, JavaScript, Rust, React, MongoDB, HTML5, Flask, OpenCV, scikit-learn, Node.js, Redis, Java, C, C++ (and the Steam icon).
+Real logos embedded in code: Python, JavaScript, Rust, React, MongoDB, HTML5, Flask, OpenCV, scikit-learn, Node.js, Redis, Java, C, C++ (and the Steam icon).
