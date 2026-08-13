@@ -558,7 +558,4 @@ export const nameVariants = [
   { text: 'Тушер Мондал', lang: 'Русский · Russian', font: "'Noto Sans',sans-serif" },
   { text: 'توشير موندال', lang: 'العربية · Arabic', font: "'Noto Naskh Arabic','Traditional Arabic',serif" },
   { text: 'Τουσέρ Μόνταλ', lang: 'Ελληνικά · Greek', font: "'Noto Serif',serif" },
-  { text: 'Tusher Mondal', lang: 'Español', font: "'Georgia', serif", italic: true },
-  { text: 'Tusher Mondal', lang: 'Français', font: "'Courier New', monospace" },
-  { text: 'Tusher Mondal', lang: 'Deutsch', font: "Arial, sans-serif" },
 ]

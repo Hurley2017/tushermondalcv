@@ -6,6 +6,7 @@ import { getTheme, toggleTheme } from '../lib/theme.js'
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [active, setActive] = useState('about')
+  const [heroGone, setHeroGone] = useState(false)
   const [open, setOpen] = useState(false)
   const [theme, setTheme] = useState(getTheme)
   const sectionIds = navLinks.map((l) => l.id)
@@ -13,6 +14,9 @@ export default function Navbar() {
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 24)
+      // Show the navbar photo only once the hero (with its photo) has scrolled past.
+      const hero = document.getElementById('top')
+      setHeroGone(hero ? hero.getBoundingClientRect().bottom <= 72 : true)
       // Robust scroll-spy: the last section whose top is above the navbar.
       let current = ''
       for (const id of sectionIds) {
@@ -36,8 +40,8 @@ export default function Navbar() {
     }
   }, [sectionIds])
 
-  // Show the profile picture alongside the name once we scroll past the hero.
-  const showAvatar = active !== sectionIds[0]
+  // Photo appears in the navbar only after the big hero photo scrolls away.
+  const showAvatar = heroGone
 
   const onToggleTheme = () => {
     const next = toggleTheme()

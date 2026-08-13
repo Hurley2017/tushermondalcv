@@ -2,35 +2,52 @@ import { useEffect, useState } from 'react'
 import { profile, nameVariants } from '../data/profile.js'
 import { Icon } from './icons.jsx'
 
-// The big hero name cycles through "Tusher Mondal" in many languages & scripts.
-function AnimatedName() {
+// Typewriter that types the current language's name, holds, then backspaces
+// it away before typing the next — like someone typing and correcting.
+function useTypewriter(variants, typeMs = 85, deleteMs = 38, holdMs = 2800) {
   const [index, setIndex] = useState(0)
-  const [visible, setVisible] = useState(true)
+  const [text, setText] = useState('')
+  const [phase, setPhase] = useState('typing')
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setVisible(false)
-      window.setTimeout(() => {
-        setIndex((i) => (i + 1) % nameVariants.length)
-        setVisible(true)
-      }, 400)
-    }, 3000)
-    return () => clearInterval(timer)
-  }, [])
+    const full = variants[index].text
+    let timer
+    if (phase === 'typing') {
+      if (text.length < full.length) {
+        timer = setTimeout(() => setText(full.slice(0, text.length + 1)), typeMs)
+      } else {
+        timer = setTimeout(() => setPhase('deleting'), holdMs)
+      }
+    } else if (phase === 'deleting') {
+      if (text.length > 0) {
+        timer = setTimeout(() => setText(text.slice(0, -1)), deleteMs)
+      } else {
+        setPhase('typing')
+        setIndex((i) => (i + 1) % variants.length)
+      }
+    }
+    return () => clearTimeout(timer)
+  }, [text, phase, index, variants, typeMs, deleteMs, holdMs])
 
-  const v = nameVariants[index]
+  const v = variants[index]
+  return { text, lang: v.lang, font: v.font, italic: v.italic }
+}
+
+function AnimatedName() {
+  const { text, lang, font, italic } = useTypewriter(nameVariants)
 
   return (
     <div className="hero__name-wrap">
       <h1 className="hero__name" aria-label="Tusher Mondal">
         <span
-          className={`name-cycle ${visible ? 'is-in' : 'is-out'}`}
-          style={{ fontFamily: v.font, fontStyle: v.italic ? 'italic' : 'normal' }}
+          className="name-cycle"
+          style={{ fontFamily: font, fontStyle: italic ? 'italic' : 'normal' }}
         >
-          {v.text}
+          {text}
+          <span className="name-caret" aria-hidden="true" />
         </span>
       </h1>
-      <span className="hero__lang">{v.lang}</span>
+      <span className="hero__lang">{lang}</span>
     </div>
   )
 }
