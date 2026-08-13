@@ -1,10 +1,13 @@
 import { profile } from '../data/profile.js'
 import { Icon } from './icons.jsx'
 import Reveal from './Reveal.jsx'
+import Decor from './Decor.jsx'
 
 export default function About() {
   return (
     <section id="about" className="section">
+      <Decor type="brackets" className="section__decor section__decor--brackets" />
+      <Decor type="crosshair" className="section__decor section__decor--crosshair" />
       <div className="container">
         <Reveal>
           <h2 className="section__title">

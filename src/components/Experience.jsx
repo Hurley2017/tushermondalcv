@@ -1,10 +1,12 @@
 import { experience } from '../data/profile.js'
 import BrandBadge from './Brand.jsx'
 import Reveal from './Reveal.jsx'
+import Decor from './Decor.jsx'
 
 export default function Experience() {
   return (
     <section id="experience" className="section section--alt">
+      <Decor type="dots" className="section__decor section__decor--dots" />
       <div className="container">
         <Reveal>
           <h2 className="section__title">

@@ -1,10 +1,14 @@
 import { profile } from '../data/profile.js'
 import { Icon } from './icons.jsx'
 import Reveal from './Reveal.jsx'
+import Decor from './Decor.jsx'
 
 export default function Contact() {
   return (
     <section id="contact" className="section section--alt">
+      <Decor type="spark" className="section__decor section__decor--spark" />
+      <Decor type="crosshair" className="section__decor section__decor--crosshair" />
+      <Decor type="plus" className="section__decor section__decor--plus" />
       <div className="container">
         <Reveal className="contact">
           <span className="contact__eyebrow">Let's build something together</span>

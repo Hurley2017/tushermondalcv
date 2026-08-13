@@ -1,9 +1,25 @@
+import { useEffect, useState } from 'react'
 import { profile } from '../data/profile.js'
 import { Icon } from './icons.jsx'
 
-// Fixed bottom bar — "Connect · Let's build something together".
-// On mobile the Get CV button appears here.
+// Fixed bottom bar — "Connect". Back-to-top button appears once the visitor
+// has scrolled past 30% of the page.
 export default function Footer() {
+  const [showTop, setShowTop] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => {
+      const doc = document.documentElement
+      const scrollable = doc.scrollHeight - window.innerHeight
+      setShowTop(window.scrollY / Math.max(scrollable, 1) > 0.3)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const toTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
+
   return (
     <footer className="footer">
       <div className="container footer__bar">
@@ -28,6 +44,15 @@ export default function Footer() {
             </a>
           </div>
         </div>
+        <button
+          type="button"
+          className={`footer__top ${showTop ? 'is-visible' : ''}`}
+          onClick={toTop}
+          aria-label="Back to top"
+          title="Back to top"
+        >
+          <Icon name="arrowUp" size={16} />
+        </button>
         <div className="footer__icons">
           {profile.socials.map((s) => (
             <a

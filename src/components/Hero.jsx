@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { profile, nameVariants } from '../data/profile.js'
 import { Icon } from './icons.jsx'
+import Decor from './Decor.jsx'
 
 // Typewriter that types the current language's name, holds, then backspaces
 // it away before typing the next — like someone typing and correcting.
@@ -55,6 +56,10 @@ function AnimatedName() {
 export default function Hero() {
   return (
     <section id="top" className="hero">
+      <Decor type="rings" className="hero__decor hero__decor--rings" />
+      <Decor type="spark" className="hero__decor hero__decor--spark" />
+      <Decor type="dots" className="hero__decor hero__decor--dots" />
+      <Decor type="plus" className="hero__decor hero__decor--plus" />
       <div className="container hero__inner">
         <div className="hero__content">
           <span className="hero__eyebrow">Hi, my name is</span>

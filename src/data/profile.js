@@ -3,11 +3,7 @@
 
 export const profile = {
   name: 'Tusher Mondal',
-  firstName: 'Tusher',
-  lastName: 'Mondal',
   role: 'Manager — Management Reporting — CIB',
-  company: 'HSBC',
-  headline: "Manager — Management Reporting — CIB @ HSBC | JU'24 MCA",
   tagline:
     'I turn messy data into decisions and build applications that solve real-world problems — analytics by day, engineering by passion.',
   location: 'Bengaluru, Karnataka, India',
@@ -17,7 +13,6 @@ export const profile = {
   resumeNote:
     "I'm a Manager in Management Reporting (CIB) at HSBC, working with Excel, Power BI, TM1 and Alteryx for enterprise data analytics — and I love building applications that solve real-life problems. A big part of my tinkering is local, on-device AI: I run LLMs through LM Studio, generate images with Stable Diffusion (SDXL / RealVisXL) and synthesize voices with Orpheus TTS — everything fully local, no cloud. With an MCA from Jadavpur University and a B.Sc (Hons) in Computer Science, I sit at the intersection of analytics and engineering: crafting data-driven insights, automating workflows, and shipping full-stack apps in Python, JavaScript and Rust.",
   cvPdf: '/Tusher_Mondal_CV.pdf',
-  cvTex: '/Tusher_Mondal_CV.tex',
   socials: [
     {
       label: 'GitHub',
@@ -547,11 +542,12 @@ export const projects = [
 ]
 
 // The big hero name cycles through these — each entry is a translation of
-// "Tusher Mondal" rendered in a different script and typeface.
+// "Tusher Mondal" rendered in a different script and typeface. Bengali first
+// (native), then the rest.
 export const nameVariants = [
+  { text: 'তুষার মণ্ডল', lang: 'বাংলা · Bengali', font: "'Noto Sans Bengali','Vrinda',sans-serif", scale: 0.95 },
   { text: 'Tusher Mondal', lang: 'English', font: "'Fraunces', Georgia, serif", italic: true, scale: 1 },
   { text: 'तुषार मोंडल', lang: 'हिन्दी · Hindi', font: "'Noto Sans Devanagari','Mangal',sans-serif", scale: 0.95 },
-  { text: 'তুষার মণ্ডল', lang: 'বাংলা · Bengali', font: "'Noto Sans Bengali','Vrinda',sans-serif", scale: 0.95 },
   { text: '투셔 몬달', lang: '한국어 · Korean', font: "'Noto Sans KR','Malgun Gothic',sans-serif", scale: 0.95 },
   { text: 'トゥシャー・モンダル', lang: '日本語 · Japanese', font: "'Noto Sans JP','Yu Gothic',sans-serif", scale: 0.62 },
   { text: '图舍尔·蒙达尔', lang: '中文 · Chinese', font: "'Noto Sans SC','SimSun',serif", scale: 0.78 },
