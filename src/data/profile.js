@@ -549,13 +549,13 @@ export const projects = [
 // The big hero name cycles through these — each entry is a translation of
 // "Tusher Mondal" rendered in a different script and typeface.
 export const nameVariants = [
-  { text: 'Tusher Mondal', lang: 'English', font: "'Fraunces', Georgia, serif", italic: true },
-  { text: 'तुषार मोंडल', lang: 'हिन्दी · Hindi', font: "'Noto Sans Devanagari','Mangal',sans-serif" },
-  { text: 'তুষার মণ্ডল', lang: 'বাংলা · Bengali', font: "'Noto Sans Bengali','Vrinda',sans-serif" },
-  { text: '투셔 몬달', lang: '한국어 · Korean', font: "'Noto Sans KR','Malgun Gothic',sans-serif" },
-  { text: 'トゥシャー・モンダル', lang: '日本語 · Japanese', font: "'Noto Sans JP','Yu Gothic',sans-serif" },
-  { text: '图舍尔·蒙达尔', lang: '中文 · Chinese', font: "'Noto Sans SC','SimSun',serif" },
-  { text: 'Тушер Мондал', lang: 'Русский · Russian', font: "'Noto Sans',sans-serif" },
-  { text: 'توشير موندال', lang: 'العربية · Arabic', font: "'Noto Naskh Arabic','Traditional Arabic',serif" },
-  { text: 'Τουσέρ Μόνταλ', lang: 'Ελληνικά · Greek', font: "'Noto Serif',serif" },
+  { text: 'Tusher Mondal', lang: 'English', font: "'Fraunces', Georgia, serif", italic: true, scale: 1 },
+  { text: 'तुषार मोंडल', lang: 'हिन्दी · Hindi', font: "'Noto Sans Devanagari','Mangal',sans-serif", scale: 0.95 },
+  { text: 'তুষার মণ্ডল', lang: 'বাংলা · Bengali', font: "'Noto Sans Bengali','Vrinda',sans-serif", scale: 0.95 },
+  { text: '투셔 몬달', lang: '한국어 · Korean', font: "'Noto Sans KR','Malgun Gothic',sans-serif", scale: 0.95 },
+  { text: 'トゥシャー・モンダル', lang: '日本語 · Japanese', font: "'Noto Sans JP','Yu Gothic',sans-serif", scale: 0.62 },
+  { text: '图舍尔·蒙达尔', lang: '中文 · Chinese', font: "'Noto Sans SC','SimSun',serif", scale: 0.78 },
+  { text: 'Тушер Мондал', lang: 'Русский · Russian', font: "'Noto Sans',sans-serif", scale: 0.72 },
+  { text: 'توشير موندال', lang: 'العربية · Arabic', font: "'Noto Naskh Arabic','Traditional Arabic',serif", scale: 0.68 },
+  { text: 'Τουσέρ Μόνταλ', lang: 'Ελληνικά · Greek', font: "'Noto Serif',serif", scale: 0.6 },
 ]

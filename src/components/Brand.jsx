@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { LOGO_PATHS } from '../lib/logo-paths.js'
 
 // Fallback colored initial badges (used when no real logo is available).
@@ -48,6 +49,57 @@ function hashColor(str) {
   return `hsl(${h}, 55%, 42%)`
 }
 
+// For names without an embedded logo, try an image in /logos/ first (the user
+// drops real logos there) — we try lowercase-slug and original-name variants in
+// svg and png. Falls back to the colored initial badge if none loads.
+function LogoWithFallback({ name, size }) {
+  const slug = name.toLowerCase().replace(/[^a-z0-9]/g, '')
+  const candidates = [
+    `/logos/${slug}.svg`,
+    `/logos/${slug}.png`,
+    `/logos/${encodeURIComponent(name)}.svg`,
+    `/logos/${encodeURIComponent(name)}.png`,
+  ]
+  const [idx, setIdx] = useState(0)
+  const [failed, setFailed] = useState(false)
+  const fallback =
+    FALLBACK[name] || { label: name.slice(0, 2).toUpperCase(), bg: hashColor(name), fg: '#ffffff' }
+
+  if (failed || idx >= candidates.length) {
+    return (
+      <span
+        className={`brand-badge brand-badge--${size}`}
+        style={{ background: fallback.bg, color: fallback.fg }}
+        title={name}
+        aria-label={name}
+      >
+        <span className="brand-badge__label">{fallback.label}</span>
+      </span>
+    )
+  }
+
+  return (
+    <span
+      className={`brand-badge brand-badge--${size}`}
+      style={{ background: fallback.bg, color: fallback.fg }}
+      title={name}
+      aria-label={name}
+    >
+      <img
+        className="brand-badge__img"
+        src={candidates[idx]}
+        alt=""
+        loading="lazy"
+        onError={() => {
+          if (idx + 1 >= candidates.length) setFailed(true)
+          else setIdx(idx + 1)
+        }}
+      />
+      <span className="brand-badge__label">{fallback.label}</span>
+    </span>
+  )
+}
+
 export default function BrandBadge({ name, size = 'md' }) {
   const logo = LOGOS[name]
   if (logo && LOGO_PATHS[logo.key]) {
@@ -64,17 +116,5 @@ export default function BrandBadge({ name, size = 'md' }) {
     )
   }
 
-  const fallback =
-    FALLBACK[name] || { label: name.slice(0, 2).toUpperCase(), bg: hashColor(name), fg: '#ffffff' }
-
-  return (
-    <span
-      className={`brand-badge brand-badge--${size}`}
-      style={{ background: fallback.bg, color: fallback.fg }}
-      title={name}
-      aria-label={name}
-    >
-      {fallback.label}
-    </span>
-  )
+  return <LogoWithFallback name={name} size={size} />
 }

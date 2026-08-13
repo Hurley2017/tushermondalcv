@@ -30,18 +30,18 @@ function useTypewriter(variants, typeMs = 85, deleteMs = 38, holdMs = 2800) {
   }, [text, phase, index, variants, typeMs, deleteMs, holdMs])
 
   const v = variants[index]
-  return { text, lang: v.lang, font: v.font, italic: v.italic }
+  return { text, lang: v.lang, font: v.font, italic: v.italic, scale: v.scale || 1 }
 }
 
 function AnimatedName() {
-  const { text, lang, font, italic } = useTypewriter(nameVariants)
+  const { text, lang, font, italic, scale } = useTypewriter(nameVariants)
 
   return (
     <div className="hero__name-wrap">
       <h1 className="hero__name" aria-label="Tusher Mondal">
         <span
           className="name-cycle"
-          style={{ fontFamily: font, fontStyle: italic ? 'italic' : 'normal' }}
+          style={{ fontFamily: font, fontStyle: italic ? 'italic' : 'normal', fontSize: `${scale}em` }}
         >
           {text}
           <span className="name-caret" aria-hidden="true" />

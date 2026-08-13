@@ -7,26 +7,26 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="container footer__bar">
-        <div className="footer__text">
+        <div className="footer__left">
           <span className="footer__connect">Connect</span>
-        </div>
-        <div className="footer__contact">
-          <a
-            className="social-btn social-btn--sm"
-            href={`mailto:${profile.email}`}
-            aria-label="Send an email"
-            title="Email"
-          >
-            <Icon name="mail" size={16} />
-          </a>
-          <a
-            className="social-btn social-btn--sm"
-            href={`tel:${profile.phone.replace(/[^+\d]/g, '')}`}
-            aria-label="Call me"
-            title="Call"
-          >
-            <Icon name="phone" size={16} />
-          </a>
+          <div className="footer__contact">
+            <a
+              className="social-btn social-btn--sm"
+              href={`mailto:${profile.email}`}
+              aria-label="Send an email"
+              title="Email"
+            >
+              <Icon name="mail" size={16} />
+            </a>
+            <a
+              className="social-btn social-btn--sm"
+              href={`tel:${profile.phone.replace(/[^+\d]/g, '')}`}
+              aria-label="Call me"
+              title="Call"
+            >
+              <Icon name="phone" size={16} />
+            </a>
+          </div>
         </div>
         <div className="footer__icons">
           {profile.socials.map((s) => (
