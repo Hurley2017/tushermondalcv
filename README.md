@@ -26,13 +26,26 @@ Edit that file to update the site — no component changes needed.
 ## Deploying to Vercel
 
 This project is ready for Vercel out of the box (Vite is auto-detected).
-
-1. Push this repo to GitHub.
-2. In Vercel, **Import Project** → pick the repo.
-3. Framework preset: **Vite** (auto-detected). Build command `npm run build`, output directory `dist`.
-4. Deploy — done.
-
 `vercel.json` includes an SPA rewrite so any path falls back to `index.html`.
+
+### Option A — Vercel dashboard (recommended)
+
+Auto-deploys on every future push, no CLI needed.
+
+1. The code is already pushed to GitHub (`Hurley2017/tushermondalcv`, branch `main`).
+2. Go to [vercel.com](https://vercel.com) → **Add New…** → **Project** → import `Hurley2017/tushermondalcv`.
+3. Framework preset **Vite** is auto-detected. Build command `npm run build`, output directory `dist`.
+4. Click **Deploy**. Every subsequent push to `main` redeploys automatically.
+
+### Option B — Vercel CLI
+
+```bash
+vercel login          # once — confirm in the browser
+vercel                # preview deployment
+vercel --prod         # production deployment
+```
+
+`vercel` links the project on first run and reuses the link afterwards.
 
 ## Project structure
 
