@@ -1,12 +1,10 @@
 import { education } from '../data/profile.js'
 import BrandBadge from './Brand.jsx'
 import Reveal from './Reveal.jsx'
-import Decor from './Decor.jsx'
 
 export default function Education() {
   return (
     <section id="education" className="section">
-      <Decor type="rings" className="section__decor section__decor--rings" />
       <div className="container">
         <Reveal>
           <h2 className="section__title">
