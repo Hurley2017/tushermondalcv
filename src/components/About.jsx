@@ -15,9 +15,10 @@ export default function About() {
           <Reveal className="about__text" delay={80}>
             <p>{profile.resumeNote}</p>
             <p>
-              I love the whole journey of software — from a rough idea, through careful design, to
-              something people actually use. I enjoy keeping things lightweight, fast and honest,
-              whether that means a tiny Rust music player or a full-stack web app.
+              At HSBC I work with enterprise data — Excel, Power BI, TM1 and Alteryx — turning raw
+              numbers into decisions. Away from the desk I keep the developer spark alive: grinding
+              through 178+ LeetCode problems, and building things like a tiny Rust music player or
+              a full-stack web app.
             </p>
           </Reveal>
           <Reveal className="about__meta" delay={160}>
@@ -32,6 +33,16 @@ export default function About() {
             <div className="about__row">
               <Icon name="phone" size={16} />
               <span>{profile.phone}</span>
+            </div>
+            <div className="about__row">
+              <Icon name="globe" size={16} />
+              <a href={profile.website} target="_blank" rel="noreferrer">
+                tushermondal.ml
+              </a>
+            </div>
+            <div className="about__row">
+              <Icon name="mail" size={16} />
+              <a href={`mailto:${profile.emailAlt}`}>{profile.emailAlt}</a>
             </div>
             <h3 className="about__subtitle">When I'm not coding</h3>
             <ul className="about__interests">

@@ -49,9 +49,9 @@ export default function Hero() {
         <div className="hero__media">
           <div className="hero__avatar-wrap">
             <img className="hero__avatar" src={profile.avatar} alt={`${profile.name} portrait`} />
-            <span className="hero__status" title="Open to opportunities">
+            <span className="hero__status" title="Data Analyst at HSBC">
               <span className="hero__status-dot" />
-              Open to work
+              Data Analyst · HSBC
             </span>
           </div>
         </div>
