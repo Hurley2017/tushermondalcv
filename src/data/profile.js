@@ -179,7 +179,7 @@ export const education = [
     url: 'http://www.jaduniv.edu.in/',
     degree: 'Master of Computer Applications (MCA) — Computer Engineering',
     period: 'Sep 2022 — Jun 2024',
-    score: 'CGPA 8.52 · Linear Avg.',
+    score: 'CGPA 8.8',
     learnings: [
       'Computer Networks, Machine Learning, and Advanced Programming in Python & Java',
       'Final-year thesis: Customizing MulVAL for Attack Graph Generation',
