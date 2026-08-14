@@ -30,11 +30,16 @@ function useTypewriter(variants, typeMs = 85, deleteMs = 38, holdMs = 2800) {
   }, [text, phase, index, variants, typeMs, deleteMs, holdMs])
 
   const v = variants[index]
-  return { text, lang: v.lang, font: v.font, italic: v.italic, scale: v.scale || 1 }
+  return { text, lang: v.lang, font: v.font, italic: v.italic, scale: v.scale || 1, full: v.text }
 }
 
 function AnimatedName() {
-  const { text, lang, font, italic, scale } = useTypewriter(nameVariants)
+  const { text, lang, font, italic, scale, full } = useTypewriter(nameVariants)
+
+  // Keep the browser tab in sync with the animated name, e.g. "তুষার মণ্ডল - Profile".
+  useEffect(() => {
+    document.title = `${full} - Profile`
+  }, [full])
 
   return (
     <div className="hero__name-wrap">
