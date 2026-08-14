@@ -9,18 +9,11 @@ export const profile = {
   location: 'Bengaluru, Karnataka, India',
   email: 'tusher9073mondal@gmail.com',
   phone: '+91 91230 90573',
-  website: 'https://www.tusher.in',
   avatar: '/avatar.webp',
   resumeNote:
     "I'm a Manager in Management Reporting (CIB) at HSBC, working with Excel, Power BI, TM1 and Alteryx for enterprise data analytics — and I love building applications that solve real-life problems. A big part of my tinkering is local, on-device AI: I run LLMs through LM Studio, generate images with Stable Diffusion (SDXL / RealVisXL) and synthesize voices with Orpheus TTS — everything fully local, no cloud. With an MCA from Jadavpur University and a B.Sc (Hons) in Computer Science, I sit at the intersection of analytics and engineering: crafting data-driven insights, automating workflows, and shipping full-stack apps in Python, JavaScript and Rust.",
   cvPdf: '/Tusher_Mondal_CV.pdf',
   socials: [
-    {
-      label: 'Website',
-      handle: 'www.tusher.in',
-      url: 'https://www.tusher.in',
-      icon: 'globe',
-    },
     {
       label: 'GitHub',
       handle: 'Hurley2017',

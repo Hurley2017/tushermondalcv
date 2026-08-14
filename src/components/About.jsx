@@ -36,12 +36,6 @@ export default function About() {
               <Icon name="phone" size={16} />
               <span>{profile.phone}</span>
             </div>
-            <div className="about__row">
-              <Icon name="globe" size={16} />
-              <a href={profile.website} target="_blank" rel="noreferrer">
-                www.tusher.in
-              </a>
-            </div>
             <h3 className="about__subtitle">Languages</h3>
             <ul className="about__languages">
               {profile.languages.map((lang) => (
