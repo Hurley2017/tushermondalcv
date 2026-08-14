@@ -369,10 +369,6 @@ button {
   width: 100%;
 }
 
-.nav__cv {
-  flex-shrink: 0;
-}
-
 .nav__theme {
   display: grid;
   place-items: center;
@@ -1643,11 +1639,6 @@ button {
     width: 100%;
     padding: 12px 0;
     border-bottom: 1px solid var(--border);
-  }
-
-  .nav__cv {
-    margin-top: 14px;
-    align-self: flex-start;
   }
 
   .footer {

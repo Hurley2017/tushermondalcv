@@ -83,9 +83,6 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a className="btn btn--primary btn--sm nav__cv" href={profile.cvPdf} download>
-            <Icon name="download" size={14} /> Get CV
-          </a>
         </nav>
 
         <button
