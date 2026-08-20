@@ -1,8 +1,8 @@
-// GET /api/visits?key=<ADMIN_TOKEN> — returns the stored visit logs.
+﻿// GET /api/visits?key=<ADMIN_TOKEN> — returns the stored visit logs.
 // Guarded by the ADMIN_TOKEN env var so IPs are never exposed publicly.
 
 // Find an env var by key fragment — tolerates the different names/suffixes
-// used by Vercel KV vs Upstash (e.g. UPSTASH_REDIS_REST_URL@0, *_PROD, …).
+// used by Vercel KV vs Upstash (e.g. UPSTASH_REDIS_REST_URL@0, *_PROD, ...).
 function findEnv(...fragments) {
   const keys = Object.keys(process.env)
   for (const fragment of fragments) {
@@ -10,6 +10,25 @@ function findEnv(...fragments) {
     if (hit) return process.env[hit]
   }
   return undefined
+}
+
+// POST a command to the Upstash REST API and return { ok, data }.
+async function kv(url, token, command, args) {
+  const res = await fetch(`${url}/${command}`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(args || []),
+  })
+  let data = {}
+  try {
+    data = await res.json()
+  } catch {
+    data = {}
+  }
+  return { ok: res.ok, status: res.status, data }
 }
 
 export default async function handler(req, res) {
@@ -29,26 +48,32 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'unauthorized' })
   }
 
-  const headers = { Authorization: `Bearer ${kvToken}` }
   try {
-    const [visitsRes, countRes] = await Promise.all([
-      fetch(`${url}/lrange/visits?start=0&stop=199`, { headers }),
-      fetch(`${url}/get/visits:count`, { headers }),
+    const [visits, count] = await Promise.all([
+      kv(url, kvToken, `lrange/visits`, [0, 199]),
+      kv(url, kvToken, `get/visits:count`, []),
     ])
-    const visits = await visitsRes.json()
-    const count = await countRes.json()
-    const list = Array.isArray(visits?.result) ? visits.result : []
+    if (!visits.ok || !count.ok) {
+      return res.status(502).json({
+        error: 'KV read failed',
+        visits: { status: visits.status, resp: visits.data },
+        count: { status: count.status, resp: count.data },
+      })
+    }
+    const list = Array.isArray(visits.data?.result) ? visits.data.result : []
     res.json({
-      total: count?.result ?? null,
-      visits: list.map((v) => {
-        try {
-          return JSON.parse(v)
-        } catch {
-          return null
-        }
-      }).filter(Boolean),
+      total: count.data?.result ?? null,
+      visits: list
+        .map((v) => {
+          try {
+            return JSON.parse(v)
+          } catch {
+            return null
+          }
+        })
+        .filter(Boolean),
     })
   } catch (err) {
-    res.status(500).json({ error: 'KV read failed' })
+    res.status(500).json({ error: 'KV read failed', detail: err.message })
   }
 }

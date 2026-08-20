@@ -1,12 +1,12 @@
-// POST /api/visit — called (via sendBeacon) once per page view.
+﻿// POST /api/visit — called (via sendBeacon) once per page view.
 // Stores a visit record in a key-value store (Upstash Redis or Vercel KV).
 // The page is a static SPA, so this serverless function is where the write
-// actually happens. Degrades silently (503) if no store is configured.
-const DAY = 24 * 60 * 60 * 1000
+// actually happens. Degrades gracefully (503) if no store is configured.
 const MAX_VISITS = 2000
+const SIX_MONTHS_SECONDS = 15552000
 
 // Find an env var by key fragment — tolerates the different names/suffixes
-// used by Vercel KV vs Upstash (e.g. UPSTASH_REDIS_REST_URL@0, *_PROD, …).
+// used by Vercel KV vs Upstash (e.g. UPSTASH_REDIS_REST_URL@0, *_PROD, ...).
 function findEnv(...fragments) {
   const keys = Object.keys(process.env)
   for (const fragment of fragments) {
@@ -14,6 +14,29 @@ function findEnv(...fragments) {
     if (hit) return process.env[hit]
   }
   return undefined
+}
+
+// POST a command to the Upstash REST API and throw if it didn't succeed.
+// Every command uses the documented POST /{command}/{key} + args-in-body form.
+async function kv(url, token, command, args) {
+  const res = await fetch(`${url}/${command}`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(args || []),
+  })
+  if (!res.ok) {
+    let detail = ''
+    try {
+      detail = (await res.text()).slice(0, 300)
+    } catch {
+      detail = ''
+    }
+    throw new Error(`${command} -> ${res.status} ${detail}`)
+  }
+  return res
 }
 
 export default async function handler(req, res) {
@@ -59,36 +82,14 @@ export default async function handler(req, res) {
     connection: body.connection || null,
   }
 
-  const headers = {
-    Authorization: `Bearer ${token}`,
-    'Content-Type': 'application/json',
-  }
-
   try {
-    // Append to a Redis list; keep only the most recent MAX_VISITS; bump counter.
     const raw = JSON.stringify(visit)
-    await fetch(`${url}/lpush/visits`, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify([raw]),
-    })
-    await fetch(`${url}/ltrim/visits`, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify([0, MAX_VISITS - 1]),
-    })
-    await fetch(`${url}/expire/visits`, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify([60, Math.floor((DAY * 180) / 1000)]), // keep 6 months
-    })
-    await fetch(`${url}/incr/visits:count`, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify([]),
-    })
+    await kv(url, token, `lpush/visits`, [raw])
+    await kv(url, token, `ltrim/visits`, [0, MAX_VISITS - 1])
+    await kv(url, token, `expire/visits`, ['visits', SIX_MONTHS_SECONDS])
+    await kv(url, token, `incr/visits:count`, [])
     res.status(204).end()
   } catch (err) {
-    res.status(500).json({ error: 'KV write failed' })
+    res.status(500).json({ error: 'KV write failed', detail: err.message })
   }
 }
