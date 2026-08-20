@@ -1,45 +1,18 @@
 ﻿// GET /api/visits?key=<ADMIN_TOKEN> — returns the stored visit logs.
 // Guarded by the ADMIN_TOKEN env var so IPs are never exposed publicly.
+import { createClient } from '@vercel/kv'
 
-// Find an env var — exact names first, then fuzzy fallback for suffixed
-// variants (e.g. KV_REST_API_URL@0, *_PROD, ...).
-function findEnv(...names) {
-  for (const name of names) {
-    if (process.env[name]) return process.env[name]
-  }
-  const keys = Object.keys(process.env)
-  for (const name of names) {
-    const hit = keys.find((k) => k.toLowerCase().includes(name.toLowerCase()))
-    if (hit && process.env[hit]) return process.env[hit]
-  }
+function envValue(...names) {
+  for (const n of names) if (process.env[n]) return process.env[n]
   return undefined
 }
 
-// POST a command to the Upstash REST API and return { ok, data }.
-async function kv(url, token, command, args) {
-  const res = await fetch(`${url}/${command}`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(args || []),
-  })
-  let data = {}
-  try {
-    data = await res.json()
-  } catch {
-    data = {}
-  }
-  return { ok: res.ok, status: res.status, data }
-}
-
 export default async function handler(req, res) {
-  const url = findEnv('KV_REST_API_URL', 'UPSTASH_REDIS_REST_URL')
-  const kvToken = findEnv('KV_REST_API_READ_ONLY_TOKEN', 'KV_REST_API_TOKEN', 'UPSTASH_REDIS_REST_TOKEN')
-  const adminToken = findEnv('ADMIN_TOKEN')
+  const url = envValue('KV_REST_API_URL', 'UPSTASH_REDIS_REST_URL')
+  const token = envValue('KV_REST_API_READ_ONLY_TOKEN', 'KV_REST_API_TOKEN', 'UPSTASH_REDIS_REST_TOKEN')
+  const adminToken = envValue('ADMIN_TOKEN')
 
-  if (!url || !kvToken) {
+  if (!url || !token) {
     return res.status(503).json({ error: 'KV not configured' })
   }
   if (!adminToken) {
@@ -51,22 +24,13 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'unauthorized' })
   }
 
+  const kv = createClient({ url, token })
   try {
-    const [visits, count] = await Promise.all([
-      kv(url, kvToken, `lrange/visits`, [0, 199]),
-      kv(url, kvToken, `get/visits:count`, []),
-    ])
-    if (!visits.ok || !count.ok) {
-      return res.status(502).json({
-        error: 'KV read failed',
-        visits: { status: visits.status, resp: visits.data },
-        count: { status: count.status, resp: count.data },
-      })
-    }
-    const list = Array.isArray(visits.data?.result) ? visits.data.result : []
+    const list = await kv.lrange('visits', 0, 199)
+    const total = await kv.get('visits:count')
     res.json({
-      total: count.data?.result ?? null,
-      visits: list
+      total: total ?? null,
+      visits: (Array.isArray(list) ? list : [])
         .map((v) => {
           try {
             return JSON.parse(v)
