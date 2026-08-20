@@ -26,19 +26,56 @@ export default async function handler(req, res) {
 
   const kv = createClient({ url, token })
   try {
-    const list = await kv.lrange('visits', 0, 199)
-    const total = await kv.get('visits:count')
-    res.json({
-      total: total ?? null,
-      visits: (Array.isArray(list) ? list : [])
-        .map((v) => {
+    const [list, total, unique, sessions] = await Promise.all([
+      kv.lrange('visits', 0, 199),
+      kv.get('visits:count'),
+      kv.scard('visitors'),
+      kv.lrange('sessions', 0, 499),
+    ])
+
+    // Tolerant parse: some older entries may be wrapped in extra quotes.
+    let parseFailures = 0
+    const visits = (Array.isArray(list) ? list : [])
+      .map((v) => {
+        try {
+          return JSON.parse(v)
+        } catch {
           try {
-            return JSON.parse(v)
+            return JSON.parse(v.replace(/^"|"$/g, '').replace(/\\"/g, '"'))
           } catch {
+            parseFailures++
             return null
           }
-        })
-        .filter(Boolean),
+        }
+      })
+      .filter(Boolean)
+
+    // Average time on page from the sessions list.
+    let avgDurationMs = null
+    if (Array.isArray(sessions) && sessions.length) {
+      let sum = 0
+      let n = 0
+      for (const s of sessions) {
+        try {
+          const rec = JSON.parse(s)
+          if (rec && typeof rec.durationMs === 'number') {
+            sum += rec.durationMs
+            n++
+          }
+        } catch {
+          /* skip */
+        }
+      }
+      if (n > 0) avgDurationMs = Math.round(sum / n)
+    }
+
+    res.json({
+      total: total ?? null,
+      unique: unique ?? null,
+      avgDurationMs,
+      listLength: Array.isArray(list) ? list.length : 0,
+      parseFailures,
+      visits,
     })
   } catch (err) {
     res.status(500).json({ error: 'KV read failed', detail: err.message })
