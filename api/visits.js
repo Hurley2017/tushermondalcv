@@ -1,9 +1,21 @@
 // GET /api/visits?key=<ADMIN_TOKEN> — returns the stored visit logs.
 // Guarded by the ADMIN_TOKEN env var so IPs are never exposed publicly.
+
+// Find an env var by key fragment — tolerates the different names/suffixes
+// used by Vercel KV vs Upstash (e.g. UPSTASH_REDIS_REST_URL@0, *_PROD, …).
+function findEnv(...fragments) {
+  const keys = Object.keys(process.env)
+  for (const fragment of fragments) {
+    const hit = keys.find((k) => k.toLowerCase().includes(fragment.toLowerCase()))
+    if (hit) return process.env[hit]
+  }
+  return undefined
+}
+
 export default async function handler(req, res) {
-  const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
-  const kvToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN
-  const adminToken = process.env.ADMIN_TOKEN
+  const url = findEnv('UPSTASH_REDIS_REST_URL', 'KV_REST_API_URL')
+  const kvToken = findEnv('UPSTASH_REDIS_REST_TOKEN', 'KV_REST_API_TOKEN')
+  const adminToken = findEnv('ADMIN_TOKEN')
 
   if (!url || !kvToken) {
     return res.status(503).json({ error: 'KV not configured' })

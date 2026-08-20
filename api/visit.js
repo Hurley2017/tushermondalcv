@@ -1,22 +1,28 @@
-// POST /api/visit — called (via sendBeacon) once per consenting page view.
-// Stores a visit record in Vercel KV. The page is a static SPA, so this
-// serverless function is where the write actually happens. Degrades silently
-// (503) if Vercel KV isn't provisioned yet.
-//
-// KV env vars — either a linked Vercel KV store (auto-added) OR a free Upstash
-// Redis database work:
-//   KV_REST_API_URL / KV_REST_API_TOKEN          (Vercel KV, if available)
-//   UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN  (Upstash Redis — free tier)
+// POST /api/visit — called (via sendBeacon) once per page view.
+// Stores a visit record in a key-value store (Upstash Redis or Vercel KV).
+// The page is a static SPA, so this serverless function is where the write
+// actually happens. Degrades silently (503) if no store is configured.
 const DAY = 24 * 60 * 60 * 1000
 const MAX_VISITS = 2000
+
+// Find an env var by key fragment — tolerates the different names/suffixes
+// used by Vercel KV vs Upstash (e.g. UPSTASH_REDIS_REST_URL@0, *_PROD, …).
+function findEnv(...fragments) {
+  const keys = Object.keys(process.env)
+  for (const fragment of fragments) {
+    const hit = keys.find((k) => k.toLowerCase().includes(fragment.toLowerCase()))
+    if (hit) return process.env[hit]
+  }
+  return undefined
+}
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'method not allowed' })
   }
 
-  const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
-  const token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN
+  const url = findEnv('UPSTASH_REDIS_REST_URL', 'KV_REST_API_URL')
+  const token = findEnv('UPSTASH_REDIS_REST_TOKEN', 'KV_REST_API_TOKEN')
   if (!url || !token) {
     return res.status(503).json({ error: 'KV not configured' })
   }
