@@ -210,28 +210,29 @@
             '<div><b>' + esc(data.total ?? '—') + '</b><span>Total visits</span></div>' +
             '<div><b>' + esc(data.unique ?? '—') + '</b><span>Unique visitors</span></div>' +
             '<div><b>' + (data.avgDurationMs != null ? Math.round(data.avgDurationMs / 1000) + 's' : '—') + '</b><span>Avg time on page</span></div>' +
-            '<div><b>' + (data.visits || []).length + '</b><span>Showing (latest)</span></div>'
+            '<div><b>' + (data.visits || []).length + '</b><span>Rows shown (all)</span></div>'
           // Debug line: stored list length vs parse failures (explains count vs rows)
           debugEl.hidden = false
           debugEl.textContent =
             'Debug: stored=' + (data.listLength ?? '—') + ', unreadable=' + (data.parseFailures ?? '—')
-          ;(data.visits || []).forEach((v) => {
-            const tr = document.createElement('tr')
-            tr.innerHTML =
-              '<td>' + fmtDate(v.ts) + '</td>' +
-              '<td><code>' + esc(v.ip) + '</code></td>' +
-              '<td>' + esc(v.country || '—') + (v.city ? ' · ' + esc(v.city) : '') + '</td>' +
-              '<td>' + esc(v.region || '—') + '</td>' +
-              '<td>' + esc(v.device || '—') + '</td>' +
-              '<td>' + esc(v.browser || '—') + ' / ' + esc(v.os || '—') + '</td>' +
-              '<td>' + esc(v.screen || '—') + (v.viewport ? '<br><span class="muted">' + esc(v.viewport) + '</span>' : '') + '</td>' +
-              '<td>' + esc(v.lang || '—') + '<br><span class="muted">' + esc(v.timezone || '') + '</span></td>' +
-              '<td>' + esc(v.colorScheme || '—') + '<br><span class="muted">' + (v.dpr ? 'DPR ' + esc(v.dpr) : '') + '</span></td>' +
-              '<td><code>' + (v.visitorId ? esc(v.visitorId).slice(0, 13) + '…' : '—') + '</code></td>' +
-              '<td><span class="muted">' + esc(v.url || '—') + '</span></td>' +
-              '<td><span class="muted">' + esc(v.referrer || '—') + '</span></td>'
-            tbody.appendChild(tr)
-          })
+          // Build all rows in one pass (fast even with hundreds of entries)
+          const rows = (data.visits || []).map((v) =>
+            '<tr>' +
+            '<td>' + fmtDate(v.ts) + '</td>' +
+            '<td><code>' + esc(v.ip) + '</code></td>' +
+            '<td>' + esc(v.country || '—') + (v.city ? ' · ' + esc(v.city) : '') + '</td>' +
+            '<td>' + esc(v.region || '—') + '</td>' +
+            '<td>' + esc(v.device || '—') + '</td>' +
+            '<td>' + esc(v.browser || '—') + ' / ' + esc(v.os || '—') + '</td>' +
+            '<td>' + esc(v.screen || '—') + (v.viewport ? '<br><span class="muted">' + esc(v.viewport) + '</span>' : '') + '</td>' +
+            '<td>' + esc(v.lang || '—') + '<br><span class="muted">' + esc(v.timezone || '') + '</span></td>' +
+            '<td>' + esc(v.colorScheme || '—') + '<br><span class="muted">' + (v.dpr ? 'DPR ' + esc(v.dpr) : '') + '</span></td>' +
+            '<td><code>' + (v.visitorId ? esc(v.visitorId).slice(0, 13) + '…' : '—') + '</code></td>' +
+            '<td><span class="muted">' + esc(v.url || '—') + '</span></td>' +
+            '<td><span class="muted">' + esc(v.referrer || '—') + '</span></td>' +
+            '</tr>'
+          )
+          tbody.innerHTML = rows.join('')
           table.hidden = false
         } catch {
           statusEl.textContent = 'Network error'

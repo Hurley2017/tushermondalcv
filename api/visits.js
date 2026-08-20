@@ -27,10 +27,10 @@ export default async function handler(req, res) {
   const kv = createClient({ url, token })
   try {
     const [list, total, unique, sessions] = await Promise.all([
-      kv.lrange('visits', 0, 199),
+      kv.lrange('visits', 0, -1),
       kv.get('visits:count'),
       kv.scard('visitors'),
-      kv.lrange('sessions', 0, 499),
+      kv.lrange('sessions', 0, -1),
     ])
 
     // Tolerant parse: some older entries may be wrapped in extra quotes.
