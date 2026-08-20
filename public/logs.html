@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Visit Logs — Tusher Mondal</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        background: #0a0a0a;
+        color: #e5e5e5;
+        padding: 32px 20px 80px;
+      }
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      h1 {
+        font-size: 1.5rem;
+        margin: 0 0 6px;
+      }
+      .sub {
+        color: #9a9a9a;
+        margin: 0 0 24px;
+        font-size: 0.9rem;
+      }
+      form {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+      input {
+        flex: 1;
+        min-width: 220px;
+        padding: 10px 14px;
+        border-radius: 6px;
+        border: 1px solid #333;
+        background: #151515;
+        color: #eee;
+        font-size: 0.95rem;
+      }
+      button {
+        padding: 10px 20px;
+        border-radius: 6px;
+        border: 1px solid #444;
+        background: #222;
+        color: #eee;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      button:hover {
+        background: #333;
+      }
+      #status {
+        color: #e2a336;
+        font-size: 0.9rem;
+        margin: 0 0 14px;
+        min-height: 1.2em;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.82rem;
+        background: #111;
+        border: 1px solid #222;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 8px 10px;
+        border-bottom: 1px solid #1c1c1c;
+        vertical-align: top;
+      }
+      th {
+        background: #181818;
+        color: #bbb;
+        font-weight: 600;
+        position: sticky;
+        top: 0;
+      }
+      tr:hover td {
+        background: #161616;
+      }
+      code {
+        color: #9ecbff;
+      }
+      .muted {
+        color: #888;
+      }
+      .sum {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+      }
+      .sum div {
+        background: #151515;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 12px 18px;
+      }
+      .sum b {
+        display: block;
+        font-size: 1.3rem;
+      }
+      .sum span {
+        color: #9a9a9a;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Visit Logs</h1>
+      <p class="sub">
+        Protected by the <code>ADMIN_TOKEN</code> env var. Bookmark with the token in the URL if you
+        like: <code>/logs.html?key=YOUR_TOKEN</code>
+      </p>
+
+      <form id="login">
+        <input id="key" type="password" placeholder="Admin token" autocomplete="off" />
+        <button type="submit">Load logs</button>
+      </form>
+      <p id="status"></p>
+
+      <div class="sum" id="summary" hidden></div>
+      <div style="overflow-x: auto">
+        <table id="logs" hidden>
+          <thead>
+            <tr>
+              <th>Time (IST)</th>
+              <th>IP</th>
+              <th>Country</th>
+              <th>Device</th>
+              <th>Browser / OS</th>
+              <th>Screen</th>
+              <th>Lang / TZ</th>
+              <th>Page</th>
+              <th>Referrer</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      const keyInput = document.getElementById('key')
+      const statusEl = document.getElementById('status')
+      const table = document.getElementById('logs')
+      const tbody = table.querySelector('tbody')
+      const summary = document.getElementById('summary')
+      const params = new URLSearchParams(location.search)
+
+      if (params.get('key')) keyInput.value = params.get('key')
+
+      function fmtDate(iso) {
+        if (!iso) return '—'
+        const d = new Date(iso)
+        if (isNaN(d)) return iso
+        return d.toLocaleString('en-IN', {
+          timeZone: 'Asia/Kolkata',
+          year: 'numeric',
+          month: 'short',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+        })
+      }
+
+      function esc(s) {
+        return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
+      }
+
+      document.getElementById('login').addEventListener('submit', async (e) => {
+        e.preventDefault()
+        const key = keyInput.value.trim()
+        if (!key) return
+        statusEl.textContent = 'Loading…'
+        try {
+          const res = await fetch('/api/visits?key=' + encodeURIComponent(key))
+          const data = await res.json()
+          if (!res.ok) {
+            statusEl.textContent = data.error || 'Request failed'
+            return
+          }
+          localStorage.setItem('tm-admin-token', key)
+          statusEl.textContent = ''
+          tbody.innerHTML = ''
+          summary.hidden = false
+          summary.innerHTML =
+            '<div><b>' + esc(data.total ?? '—') + '</b><span>Total visits</span></div>' +
+            '<div><b>' + (data.visits || []).length + '</b><span>Showing (latest)</span></div>'
+          ;(data.visits || []).forEach((v) => {
+            const tr = document.createElement('tr')
+            tr.innerHTML =
+              '<td>' + fmtDate(v.ts) + '</td>' +
+              '<td><code>' + esc(v.ip) + '</code></td>' +
+              '<td>' + esc(v.country || '—') + (v.city ? ' · ' + esc(v.city) : '') + '</td>' +
+              '<td>' + esc(v.device || '—') + '</td>' +
+              '<td>' + esc(v.browser || '—') + ' / ' + esc(v.os || '—') + '</td>' +
+              '<td>' + esc(v.screen || '—') + (v.viewport ? '<br><span class="muted">' + esc(v.viewport) + '</span>' : '') + '</td>' +
+              '<td>' + esc(v.lang || '—') + '<br><span class="muted">' + esc(v.timezone || '') + '</span></td>' +
+              '<td><span class="muted">' + esc(v.url || '—') + '</span></td>' +
+              '<td><span class="muted">' + esc(v.referrer || '—') + '</span></td>'
+            tbody.appendChild(tr)
+          })
+          table.hidden = false
+        } catch {
+          statusEl.textContent = 'Network error'
+        }
+      })
+
+      // Auto-load if a token was saved or provided in the URL.
+      const saved = localStorage.getItem('tm-admin-token')
+      if (keyInput.value || saved) {
+        if (!keyInput.value) keyInput.value = saved
+        document.getElementById('login').requestSubmit()
+      }
+    </script>
+  </body>
+</html>

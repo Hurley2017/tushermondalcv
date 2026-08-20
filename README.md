@@ -51,12 +51,32 @@ vercel --prod         # production deployment
 
 `vercel` links the project on first run and reuses the link afterwards.
 
+## Visit analytics (optional)
+
+Every page load sends a tiny, non-cookie analytics beacon to `POST /api/visit`
+(device/browser, screen size, language, timezone, referrer + server-side IP and
+country) which is stored in **Vercel KV**.
+
+**Setup:**
+
+1. In Vercel → Project → **Storage** → create a **KV** store and link it to the
+   project (this auto-adds `KV_REST_API_URL` and `KV_REST_API_TOKEN`).
+2. Add an **`ADMIN_TOKEN`** env var (any secret string you choose) under
+   Project → Settings → Environment Variables → Redeploy.
+3. View logs at **`https://www.tusher.in/logs.html`** and enter your
+   `ADMIN_TOKEN` (or use `/logs.html?key=YOUR_TOKEN`).
+
+Until KV is linked, the beacon fails silently and the site works normally.
+
 ## Project structure
 
 ```
 ├── index.html
 ├── vercel.json
-├── public/          # static assets (profile image, favicon)
+├── api/              # serverless functions (visit logging)
+│   ├── visit.js      #   POST — record a visit
+│   └── visits.js     #   GET  — read logs (needs ADMIN_TOKEN)
+├── public/           # static assets (profile image, favicon, logs.html)
 └── src/
     ├── main.jsx
     ├── App.jsx

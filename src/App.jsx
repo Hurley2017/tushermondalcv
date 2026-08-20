@@ -1,10 +1,11 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import Navbar from './components/Navbar.jsx'
 import Hero from './components/Hero.jsx'
 import Stats from './components/Stats.jsx'
 import About from './components/About.jsx'
 import Cursor from './components/Cursor.jsx'
 import Footer from './components/Footer.jsx'
+import { sendVisit } from './lib/analytics.js'
 
 // Below-the-fold sections are code-split so the initial bundle stays small.
 const Experience = lazy(() => import('./components/Experience.jsx'))
@@ -16,6 +17,11 @@ const Hobbies = lazy(() => import('./components/Hobbies.jsx'))
 const Contact = lazy(() => import('./components/Contact.jsx'))
 
 export default function App() {
+  useEffect(() => {
+    // Log this page view once on mount.
+    sendVisit()
+  }, [])
+
   return (
     <>
       <div className="bg-aura" aria-hidden="true" />
