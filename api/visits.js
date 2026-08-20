@@ -1,8 +1,8 @@
 // GET /api/visits?key=<ADMIN_TOKEN> — returns the stored visit logs.
 // Guarded by the ADMIN_TOKEN env var so IPs are never exposed publicly.
 export default async function handler(req, res) {
-  const url = process.env.KV_REST_API_URL
-  const kvToken = process.env.KV_REST_API_TOKEN
+  const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
+  const kvToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN
   const adminToken = process.env.ADMIN_TOKEN
 
   if (!url || !kvToken) {

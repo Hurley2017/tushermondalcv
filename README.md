@@ -55,18 +55,26 @@ vercel --prod         # production deployment
 
 Every page load sends a tiny, non-cookie analytics beacon to `POST /api/visit`
 (device/browser, screen size, language, timezone, referrer + server-side IP and
-country) which is stored in **Vercel KV**.
+country) which is stored in a **key-value store** (KV = Key-Value).
 
-**Setup:**
+**Setup — pick one store:**
 
-1. In Vercel → Project → **Storage** → create a **KV** store and link it to the
-   project (this auto-adds `KV_REST_API_URL` and `KV_REST_API_TOKEN`).
-2. Add an **`ADMIN_TOKEN`** env var (any secret string you choose) under
-   Project → Settings → Environment Variables → Redeploy.
-3. View logs at **`https://www.tusher.in/logs.html`** and enter your
+- **Vercel KV** (if available in your dashboard): Vercel → Project → **Storage**
+  → **Create Database** → **KV** → link it (auto-adds `KV_REST_API_URL` +
+  `KV_REST_API_TOKEN`).
+- **Upstash Redis (recommended if KV isn't shown):** create a free database at
+  [upstash.com](https://upstash.com) → copy **REST URL** and **REST Token** →
+  add them as `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` env vars.
+
+Then:
+
+1. Add an **`ADMIN_TOKEN`** env var (any secret string) under Project → Settings
+   → Environment Variables → Redeploy.
+2. View logs at **`https://www.tusher.in/logs.html`** and enter your
    `ADMIN_TOKEN` (or use `/logs.html?key=YOUR_TOKEN`).
 
-Until KV is linked, the beacon fails silently and the site works normally.
+Until a store is configured, the beacon fails silently and the site works
+normally.
 
 ## Project structure
 

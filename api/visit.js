@@ -3,10 +3,10 @@
 // serverless function is where the write actually happens. Degrades silently
 // (503) if Vercel KV isn't provisioned yet.
 //
-// KV env vars (set automatically when you link a KV store in Vercel):
-//   KV_REST_API_URL    e.g. https://your-store.upstash.io
-//   KV_REST_API_TOKEN  e.g. AXXXXxxx...
-
+// KV env vars — either a linked Vercel KV store (auto-added) OR a free Upstash
+// Redis database work:
+//   KV_REST_API_URL / KV_REST_API_TOKEN          (Vercel KV, if available)
+//   UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN  (Upstash Redis — free tier)
 const DAY = 24 * 60 * 60 * 1000
 const MAX_VISITS = 2000
 
@@ -15,8 +15,8 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'method not allowed' })
   }
 
-  const url = process.env.KV_REST_API_URL
-  const token = process.env.KV_REST_API_TOKEN
+  const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
+  const token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN
   if (!url || !token) {
     return res.status(503).json({ error: 'KV not configured' })
   }
