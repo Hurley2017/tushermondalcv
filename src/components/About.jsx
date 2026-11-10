@@ -2,7 +2,7 @@ import { profile } from '../data/profile.js'
 import { Icon } from './icons.jsx'
 import Reveal from './Reveal.jsx'
 
-export default function About() {
+export default function About({ onOpenCv }) {
   return (
     <section id="about" className="section">
       <div className="container">
@@ -44,9 +44,15 @@ export default function About() {
                 </li>
               ))}
             </ul>
-            <a className="btn btn--ghost btn--block" href={profile.cvPdf} download>
+            <button
+              type="button"
+              className="btn btn--ghost btn--block"
+              onClick={onOpenCv}
+              aria-label="Download CV — choose PDF or Excel format"
+            >
               <Icon name="download" size={15} /> Download CV
-            </a>
+              <span className="btn__formats">PDF · XLSX</span>
+            </button>
           </Reveal>
         </div>
       </div>

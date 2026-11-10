@@ -57,7 +57,7 @@ function AnimatedName() {
   )
 }
 
-export default function Hero() {
+export default function Hero({ onOpenCv }) {
   return (
     <section id="top" className="hero">
       <div className="container hero__inner">
@@ -68,9 +68,15 @@ export default function Hero() {
           <p className="hero__tagline">{profile.tagline}</p>
 
           <div className="hero__actions">
-            <a className="btn btn--primary" href={profile.cvPdf} download>
+            <button
+              type="button"
+              className="btn btn--primary"
+              onClick={onOpenCv}
+              aria-label="Download CV — choose PDF or Excel format"
+            >
               <Icon name="download" size={17} /> Get CV
-            </a>
+              <span className="btn__formats">PDF · XLSX</span>
+            </button>
             <a
               className="btn btn--ghost"
               href="#about"

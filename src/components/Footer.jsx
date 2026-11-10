@@ -6,7 +6,7 @@ import { getTheme, toggleTheme } from '../lib/theme.js'
 // Fixed bottom bar — "Connect". Back-to-top button appears once the visitor
 // has scrolled past 30% of the page. On mobile the theme toggle moves here
 // (the navbar hides its own on small screens).
-export default function Footer() {
+export default function Footer({ onOpenCv }) {
   const [showTop, setShowTop] = useState(false)
   const [theme, setTheme] = useState(getTheme)
 
@@ -67,9 +67,14 @@ export default function Footer() {
           >
             <Icon name={theme === 'dark' ? 'sun' : 'moon'} size={16} />
           </button>
-          <a className="btn btn--primary btn--sm footer__cv" href={profile.cvPdf} download>
+          <button
+            type="button"
+            className="btn btn--primary btn--sm footer__cv"
+            onClick={onOpenCv}
+            aria-label="Download CV — choose PDF or Excel format"
+          >
             <Icon name="download" size={14} /> Get CV
-          </a>
+          </button>
         </div>
       </div>
     </footer>

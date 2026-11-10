@@ -13,6 +13,34 @@ export const profile = {
   resumeNote:
     "I'm a Manager in Management Reporting (CIB) at HSBC, working with Excel, Power BI, TM1 and Alteryx for enterprise data analytics — and I love building applications that solve real-life problems. A big part of my tinkering is local, on-device AI: I run LLMs through LM Studio, generate images with Stable Diffusion (SDXL / RealVisXL) and synthesize voices with Orpheus TTS — everything fully local, no cloud. With an MCA from Jadavpur University and a B.Sc (Hons) in Computer Science, I sit at the intersection of analytics and engineering: crafting data-driven insights, automating workflows, and shipping full-stack apps in Python, JavaScript and Rust.",
   cvPdf: '/Tusher_Mondal_CV.pdf',
+  cvExcel: '/Tusher_Mondal_CV.xlsx',
+  cvTex: '/Tusher_Mondal_CV.tex',
+  cvFormats: [
+    {
+      id: 'pdf',
+      label: 'Traditional PDF',
+      ext: '.pdf',
+      badge: 'Classic · ATS-Ready',
+      file: '/Tusher_Mondal_CV.pdf',
+      fileName: 'Tusher_Mondal_CV.pdf',
+      description:
+        'Clean LaTeX-typeset 2-page résumé built for quick reading, ATS parsers, and crisp printing.',
+      highlights: ['2 pages · Print-ready', 'ATS-parsable text', 'Traditional LaTeX layout'],
+      previewable: true,
+    },
+    {
+      id: 'excel',
+      label: 'Excel Workbook',
+      ext: '.xlsx',
+      badge: 'Interactive · 4 Tabs',
+      file: '/Tusher_Mondal_CV.xlsx',
+      fileName: 'Tusher_Mondal_CV.xlsx',
+      description:
+        'Traditional CV reimagined in Microsoft Excel — complete with live formulas, charts, and filterable career tables.',
+      highlights: ['Traditional CV sheet', 'Formula Career Dashboard', 'Filterable Projects & Skills'],
+      previewable: false,
+    },
+  ],
   socials: [
     {
       label: 'GitHub',

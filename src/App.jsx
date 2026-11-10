@@ -1,10 +1,11 @@
-import { lazy, Suspense, useEffect } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import Navbar from './components/Navbar.jsx'
 import Hero from './components/Hero.jsx'
 import Stats from './components/Stats.jsx'
 import About from './components/About.jsx'
 import Cursor from './components/Cursor.jsx'
 import Footer from './components/Footer.jsx'
+import CvDownloadModal from './components/CvDownloadModal.jsx'
 import { sendVisit } from './lib/analytics.js'
 
 // Below-the-fold sections are code-split so the initial bundle stays small.
@@ -17,6 +18,8 @@ const Hobbies = lazy(() => import('./components/Hobbies.jsx'))
 const Contact = lazy(() => import('./components/Contact.jsx'))
 
 export default function App() {
+  const [cvModalOpen, setCvModalOpen] = useState(false)
+
   useEffect(() => {
     // Log this page view once on mount.
     sendVisit()
@@ -28,9 +31,9 @@ export default function App() {
       <Cursor />
       <Navbar />
       <main>
-        <Hero />
+        <Hero onOpenCv={() => setCvModalOpen(true)} />
         <Stats />
-        <About />
+        <About onOpenCv={() => setCvModalOpen(true)} />
         <Suspense fallback={<div className="section-lazy" aria-hidden="true" />}>
           <Experience />
           <Projects />
@@ -41,7 +44,8 @@ export default function App() {
           <Contact />
         </Suspense>
       </main>
-      <Footer />
+      <Footer onOpenCv={() => setCvModalOpen(true)} />
+      <CvDownloadModal open={cvModalOpen} onClose={() => setCvModalOpen(false)} />
     </>
   )
 }
